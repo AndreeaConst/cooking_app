@@ -12,13 +12,13 @@ using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace MasterChef_backend.Controllers
 {
-    [Route("api/registerController")]
+    [Route("api/loginController")]
     [ApiController]
-    public class RegisterController : ControllerBase
+    public class LoginController : ControllerBase
     {
         private readonly IConfiguration _configuration;
 
-        public RegisterController(IConfiguration configuration)
+        public LoginController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
@@ -47,11 +47,11 @@ namespace MasterChef_backend.Controllers
         }
 
         [HttpPost]
-        public JsonResult Post(User newUser)
+        public JsonResult Post(string username, string password)
         {
             DataTable table = new DataTable();
-            string query = @"insert into [MasterChef].[dbo].[User] (FirstName, LastName, Username, Password, Height, Weight, Age, Email) 
-                             values (@FirstName, @LastName, @Username, @Password, @Height, @Weight, @Age, @Email)";
+            string query = @"select * from [MasterChef].[dbo].[User] 
+                             where Username=@Username and Password=@Password";
             string sqlDataSource = _configuration.GetConnectionString("MasterchefAppCon");
             SqlDataReader reader;
             using (SqlConnection connection = new SqlConnection(sqlDataSource))
@@ -59,14 +59,8 @@ namespace MasterChef_backend.Controllers
                 connection.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, connection))
                 {
-                    myCommand.Parameters.AddWithValue("@FirstName", newUser.FirstName);
-                    myCommand.Parameters.AddWithValue("@LastName", newUser.LastName);
-                    myCommand.Parameters.AddWithValue("@Username", newUser.Username);
-                    myCommand.Parameters.AddWithValue("@Password", newUser.Password);
-                    myCommand.Parameters.AddWithValue("@Height", newUser.Height);
-                    myCommand.Parameters.AddWithValue("@Weight", newUser.Weight);
-                    myCommand.Parameters.AddWithValue("@Age", newUser.Age);
-                    myCommand.Parameters.AddWithValue("@Email", newUser.Email);
+                    myCommand.Parameters.AddWithValue("@Username", username);
+                    myCommand.Parameters.AddWithValue("@Password", password);
                     reader = myCommand.ExecuteReader();
                     table.Load(reader);
                     reader.Close();
@@ -79,3 +73,4 @@ namespace MasterChef_backend.Controllers
         }
     }
 }
+
