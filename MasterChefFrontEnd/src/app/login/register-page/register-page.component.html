@@ -1,0 +1,129 @@
+<div class="page-container">
+    <div class="content-wrap">
+    <mat-card class="register-card mt-4 mb-4">
+        <mat-card-header>
+            <mat-card-title>Register</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+
+            <form [formGroup]="registerForm" class="example-form">
+
+                <mat-form-field class="full-width">
+                    <input id="usernameRegister" type="text" formControlName="usernameRegister" matInput placeholder="Username"
+                        required>
+                    <mat-error *ngIf="usernameRegister">{{getErrorMessageRequiredUsernameRegister()}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input id="emailRegister" type="text" formControlName="emailRegister" matInput placeholder="Email"
+                        required>
+                    <mat-error *ngIf="emailRegister">{{getErrorMessageRequiredEmailRegister()}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input id="passwordRegister" [type]="hide1 ? 'password' : 'text'" formControlName="passwordRegister" matInput
+                        placeholder="Password" required>
+                    <mat-icon [ngStyle]="{'color':'black'}" matSuffix (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+
+                    <mat-error *ngIf="passwordRegister">
+                        <div *ngIf="getErrorMessageRequiredPasswordRegister()!=true">
+                            {{getErrorMessageRequiredPasswordRegister()}}
+                        </div>
+                    </mat-error>
+
+                    <mat-error *ngIf="passwordRegister">
+                        <div *ngIf="getErrorMessageLengthPasswordRegister()!=true">
+                            {{getErrorMessageLengthPasswordRegister()}}
+                        </div>
+                    </mat-error>
+
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input id="passwordRegisterConfirm" [type]="hide2 ? 'password' : 'text'" formControlName="passwordRegisterConfirm" matInput placeholder="Password Confirmation"
+                        required>
+                    <mat-icon [ngStyle]="{'color':'black'}" matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+                
+                    <mat-error *ngIf="passwordRegisterConfirm">
+                        <div *ngIf="getErrorMessageRequiredPasswordRegisterConfirm()!=true">
+                            {{getErrorMessageRequiredPasswordRegisterConfirm()}}
+                        </div>
+                    </mat-error>
+                
+                    <mat-error *ngIf="passwordRegisterConfirm">
+                        <div *ngIf="getErrorPasswordsEqual()!=true">
+                            Passwords do not match
+                        </div>
+                    </mat-error>
+                
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input id="firstName" type="text" formControlName="firstName" matInput placeholder="First Name"
+                        required>
+
+                    <mat-error *ngIf="firstName">
+                        <div *ngIf="getErrorMessageRequiredFirstName()!=true">
+                            {{getErrorMessageRequiredFirstName()}}
+                        </div>
+                    </mat-error>
+
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input id="lastName" type="text" formControlName="lastName" matInput placeholder="Last Name" required>
+
+                    <mat-error *ngIf="lastName">
+                        <div *ngIf="getErrorMessageRequiredLastName()!=true">
+                            {{getErrorMessageRequiredLastName()}}
+                        </div>
+                    </mat-error>
+
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input id="height" type="text" formControlName="height" matInput placeholder="Your height">
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input id="weight" type="text" formControlName="weight" matInput placeholder="Your weight">
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input id="age" type="text" formControlName="age" matInput placeholder="Your age">
+                </mat-form-field>
+
+                <mat-card-actions>
+                    <button (click)="onRegister(emailRegister?.value, passwordRegister?.value, firstName?.value, lastName?.value)" [disabled]="registerForm.invalid" class="register-button" mat-raised-button color="accent">Register</button>
+                </mat-card-actions>
+                
+            </form>
+
+        </mat-card-content>
+    
+    </mat-card>
+    </div>
+
+<div class="footer">
+    <div class="col-4 footer-divs">
+        Studenti:
+        <br>
+        Cibotaru Bianca, grupa 10LF291
+        <br>
+        Constantinescu Andreea, grupa 10LF291
+        <br>
+        Gramada Catalina, grupa 10LF292
+    </div>
+    <div class="col-4 footer-divs">
+        <img src="../assets/images/Masterchef logo.png" width="300px" height="200px">
+    </div>
+    <div class="col-4 footer-divs">
+        Inginerie Software Masterchef@2021
+    </div>
+        
+</div>
+
+</div>

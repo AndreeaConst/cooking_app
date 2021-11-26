@@ -29,12 +29,6 @@
                     </mat-error>
 
                     <mat-error *ngIf="passwordLogin">
-                        <div *ngIf="getErrorMessageStrengthPasswordLogin()!=true">
-                            {{getErrorMessageStrengthPasswordLogin()}}
-                        </div>
-                    </mat-error>
-
-                    <mat-error *ngIf="passwordLogin">
                         <div *ngIf="getErrorMessageLengthPasswordLogin()!=true">
                             {{getErrorMessageLengthPasswordLogin()}}
                         </div>
@@ -57,5 +51,24 @@
         </mat-card-content>
     </mat-card>
 
+</div>
+
+<div class="footer">
+    <div class="col-4 footer-divs">
+        Studenti:
+        <br>
+        Cibotaru Bianca, grupa 10LF291
+        <br>
+        Constantinescu Andreea, grupa 10LF291
+        <br>
+        Gramada Catalina, grupa 10LF292
+    </div>
+    <div class="col-4 footer-divs">
+        <img src="../assets/images/Masterchef logo.png" width="300px" height="200px">
+    </div>
+    <div class="col-4 footer-divs">
+        Inginerie Software Masterchef@2021
+    </div>
+        
 </div>
 

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CustomValidators } from 'src/app/utils/custom-validators';
 
 @Component({
   selector: 'app-login-page',
@@ -33,8 +32,7 @@ export class LoginPageComponent implements OnInit {
         validators: [
           Validators.compose([
             Validators.required,
-            Validators.minLength(6),
-            CustomValidators.passwordStrength()
+            Validators.minLength(6)
           ])
         ],
         updateOn: 'blur'
@@ -65,10 +63,6 @@ export class LoginPageComponent implements OnInit {
 
   getErrorMessageRequiredPasswordLogin() {
     return this.passwordLogin?.hasError('required') ? 'Please enter your password' : true;
-  }
-
-  getErrorMessageStrengthPasswordLogin() {
-    return this.passwordLogin?.errors?.passwordStrength ? 'Your password must contain at least one capital letter, one small letter, one digit and one special character' : true;
   }
 
   getErrorMessageLengthPasswordLogin() {
