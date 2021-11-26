@@ -1,1 +1,61 @@
-<p>login-page works!</p>
+<div class="content-body">
+
+    <mat-card class="login-card">
+        <mat-card-header>
+            <mat-card-title>Login</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+
+            <form [formGroup]="loginForm" class="example-form">
+
+                <mat-form-field class="full-width">
+                    <input id="emailLogin" type="text" formControlName="emailLogin" matInput placeholder="Email"
+                        required>
+                    <mat-error *ngIf="emailLogin">{{getErrorMessageRequiredEmailLogin()}}</mat-error>
+                </mat-form-field>
+
+
+                <mat-form-field class="full-width">
+                    <input matInput id="passwordLogin" [type]="hide ? 'password' : 'text'"
+                        formControlName="passwordLogin" placeholder="Password" required>
+                    <mat-icon [ngStyle]="{'color':'black'}" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' :
+                        'visibility'}}</mat-icon>
+
+                    <mat-error *ngIf="passwordLogin">
+                        <div *ngIf="getErrorMessageRequiredPasswordLogin()!=true">
+                            {{getErrorMessageRequiredPasswordLogin()}}
+                        </div>
+                    </mat-error>
+
+                    <mat-error *ngIf="passwordLogin">
+                        <div *ngIf="getErrorMessageStrengthPasswordLogin()!=true">
+                            {{getErrorMessageStrengthPasswordLogin()}}
+                        </div>
+                    </mat-error>
+
+                    <mat-error *ngIf="passwordLogin">
+                        <div *ngIf="getErrorMessageLengthPasswordLogin()!=true">
+                            {{getErrorMessageLengthPasswordLogin()}}
+                        </div>
+                    </mat-error>
+
+                </mat-form-field>
+
+                <mat-checkbox class="checkbox" (click)="onClickRememberMe()">Remember me
+                </mat-checkbox>
+
+                <mat-card-actions>
+                    <button [disabled]="loginForm.invalid" (click)="onLogin(emailLogin?.value, passwordLogin?.value)"
+                        class="login-button" mat-raised-button color="accent">Login</button>
+                </mat-card-actions>
+
+                
+
+            </form>
+            Don't have an account? <a routerLink="/register">Register here!</a>
+        </mat-card-content>
+    </mat-card>
+
+</div>
+
