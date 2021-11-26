@@ -10,7 +10,7 @@
             <form [formGroup]="loginForm" class="example-form">
 
                 <mat-form-field class="full-width">
-                    <input id="emailLogin" type="text" formControlName="emailLogin" matInput placeholder="Email"
+                    <input id="emailLogin" type="text" formControlName="emailLogin" matInput placeholder="Email/Username"
                         required>
                     <mat-error *ngIf="emailLogin">{{getErrorMessageRequiredEmailLogin()}}</mat-error>
                 </mat-form-field>

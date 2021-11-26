@@ -85,19 +85,19 @@
                 </mat-form-field>
 
                 <mat-form-field class="full-width">
-                    <input id="height" type="text" formControlName="height" matInput placeholder="Your height">
+                    <input id="height" type="number" formControlName="height" matInput placeholder="Your height">
                 </mat-form-field>
 
                 <mat-form-field class="full-width">
-                    <input id="weight" type="text" formControlName="weight" matInput placeholder="Your weight">
+                    <input id="weight" type="number" formControlName="weight" matInput placeholder="Your weight">
                 </mat-form-field>
 
                 <mat-form-field class="full-width">
-                    <input id="age" type="text" formControlName="age" matInput placeholder="Your age">
+                    <input id="age" type="number" formControlName="age" matInput placeholder="Your age">
                 </mat-form-field>
 
                 <mat-card-actions>
-                    <button (click)="onRegister(emailRegister?.value, passwordRegister?.value, firstName?.value, lastName?.value)" [disabled]="registerForm.invalid" class="register-button" mat-raised-button color="accent">Register</button>
+                    <button (click)="onRegister(emailRegister?.value, passwordRegister?.value, firstName?.value, lastName?.value, usernameRegister?.value, height?.value, weight?.value, age?.value)" [disabled]="registerForm.invalid" class="register-button" mat-raised-button color="accent">Register</button>
                 </mat-card-actions>
                 
             </form>

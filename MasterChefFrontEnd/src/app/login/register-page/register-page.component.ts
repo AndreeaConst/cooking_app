@@ -63,7 +63,7 @@ export class RegisterPageComponent implements OnInit {
     })
   }
 
-  async onRegister(email: string, password: string, firstName: string, lastName: string) {
+  async onRegister(email: string, password: string, firstName: string, lastName: string,usernameRegister:string, height:number, weight:number, age:number) {
 
   }
 
@@ -85,6 +85,18 @@ export class RegisterPageComponent implements OnInit {
 
   get passwordRegister() {
     return this.registerForm.get("passwordRegister");
+  }
+
+  get height(){
+    return this.registerForm.get("height");
+  }
+
+  get weight(){
+    return this.registerForm.get("weight");
+  }
+
+  get age(){
+    return this.registerForm.get("age");
   }
 
   get passwordRegisterConfirm() {
