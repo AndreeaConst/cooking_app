@@ -2,7 +2,7 @@
 
     <style>
       body{
-                background-image: url("https://wallpaperaccess.com/full/4902543.jpg");
+                background-color: rgb(252, 223, 186);
                 background-size:contain;
             }
       h1{
@@ -13,16 +13,77 @@
                 color: rgb(219, 6, 6);
                 text-align: center;
             }
-    .center {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+           table.purpleHorizon {
+                font-family: lady-like;
+                background-color: #FDA258;
+                width: 200px;
+                text-align: center;
+                margin-right: auto;
+                margin-left: auto;
+                border-collapse: collapse;
+            }
+            table.purpleHorizon td, table.purpleHorizon th {
+                border: 1px solid rgb(0, 0, 0);
+                padding: 5px 2px;
+            }
+            table.purpleHorizon tbody td {
+                font-size: 20px;
+                color: rgb(51, 11, 11);
+            }
+            table.purpleHorizon tr:nth-child(even) {
+                background: rgba(235, 10, 10, 0.699);
+            }
+            table.purpleHorizon thead {
+                background: rgb(219, 6, 6);
+                border-bottom: 4px solid #000000;
+            }
+            table.purpleHorizon thead th {
+                font-size: 19px;
+                font-weight: bold;
+                color: #310606;
+                text-align: center;
+                border-left: 2px solid #BB450E;
+            }
+            table.purpleHorizon thead th:first-child {
+                border-left: none;
+            }
+            
+            table.purpleHorizon tfoot td {
+                font-size: 13px;
+            }
+            table.purpleHorizon tfoot .links {
+                text-align: right;
+            }
+            table.purpleHorizon tfoot .links a{
+                display: inline-block;
+                background: #920d03;
+                color: #1b0808;
+                padding: 2px 8px;
+                border-radius: 5px;
             }
       </style>
 
 <body>
 
-    <img style="text-align: center;" src="../assets/images/Masterchef logo.png" width="200px" height="150px" class="center">
-    <h1>Nume Prenume</h1>
+    <img style="display: block; margin-left: auto; margin-right: auto;" src="../assets/images/Masterchef logo.png" width="200px" height="150px" class="center">
+    <h1>Welcome, Nume Prenume!</h1>
+
+            <table class="purpleHorizon">
+                <thead>
+                </thead>
+                <tbody>
+                <tr>
+                <td>Age</td><td>20</td></tr>
+                <tr>
+                <td>Height</td><td>160</td></tr>
+                <tr>
+                <td>Weight</td><td>50</td></tr>
+                </tbody>
+            </table>
+
+
+    
 
 </body>
+
+
