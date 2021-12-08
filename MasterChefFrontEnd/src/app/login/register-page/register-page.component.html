@@ -7,7 +7,7 @@
 
         <mat-card-content>
 
-            <form [formGroup]="registerForm" class="example-form">
+            <form [formGroup]="registerForm" #rForm="ngForm" class="example-form">
 
                 <mat-form-field class="full-width">
                     <input id="usernameRegister" type="text" formControlName="usernameRegister" matInput placeholder="Username"
@@ -97,7 +97,7 @@
                 </mat-form-field>
 
                 <mat-card-actions>
-                    <button (click)="onRegister(emailRegister?.value, passwordRegister?.value, firstName?.value, lastName?.value, usernameRegister?.value, height?.value, weight?.value, age?.value)" [disabled]="registerForm.invalid" class="register-button" mat-raised-button color="accent">Register</button>
+                    <button (click)="onRegister(rForm)" [disabled]="registerForm.invalid" class="register-button" mat-raised-button color="accent">Register</button>
                 </mat-card-actions>
                 
             </form>

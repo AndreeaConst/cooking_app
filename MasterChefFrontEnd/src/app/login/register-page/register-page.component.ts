@@ -1,5 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from 'src/app/interfaces/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-register-page',
@@ -13,7 +17,10 @@ export class RegisterPageComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({});
 
   constructor(
-    private fb: FormBuilder){}
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router
+    ){}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -63,8 +70,16 @@ export class RegisterPageComponent implements OnInit {
     })
   }
 
-  async onRegister(email: string, password: string, firstName: string, lastName: string,usernameRegister:string, height:number, weight:number, age:number) {
-
+  async onRegister(rForm: { value: User; reset: () => void; }) {
+    this.userService.addUser(rForm.value).subscribe(
+      (response: User) => {
+        this.router.navigate(['/my-profile']);
+      },
+      (error: HttpErrorResponse) => {
+        alert("Ops!Nu te-am putut inregistra!")
+        
+      }
+    );
   }
 
   get firstName() {
