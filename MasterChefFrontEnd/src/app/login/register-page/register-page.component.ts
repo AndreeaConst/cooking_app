@@ -24,29 +24,29 @@ export class RegisterPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      usernameRegister: ['', Validators.compose(
+      Username: ['', Validators.compose(
         [Validators.required]
       )],
 
-      emailRegister: ['', Validators.compose(
+      Email: ['', Validators.compose(
         [Validators.required]
       )],
 
-      firstName: ['', Validators.compose(
+      FirstName: ['', Validators.compose(
         [Validators.required]
       )],
 
-      lastName: ['', Validators.compose(
+      LastName: ['', Validators.compose(
         [Validators.required]
       )],
 
-      weight: [''],
+      Weight: [''],
 
-      height: [''],
+      Height: [''],
 
-      age: [''],
+      Age: [''],
 
-      passwordRegister: ['',
+      Password: ['',
         {
           validators: [
             Validators.compose([
@@ -83,35 +83,35 @@ export class RegisterPageComponent implements OnInit {
   }
 
   get firstName() {
-    return this.registerForm.get("firstName");
+    return this.registerForm.get("FirstName");
   }
 
   get lastName() {
-    return this.registerForm.get("lastName");
+    return this.registerForm.get("LastName");
   }
 
   get emailRegister() {
-    return this.registerForm.get("emailRegister");
+    return this.registerForm.get("Email");
   }
 
   get usernameRegister() {
-    return this.registerForm.get("usernameRegister");
+    return this.registerForm.get("Username");
   }
 
   get passwordRegister() {
-    return this.registerForm.get("passwordRegister");
+    return this.registerForm.get("Password");
   }
 
   get height(){
-    return this.registerForm.get("height");
+    return this.registerForm.get("Height");
   }
 
   get weight(){
-    return this.registerForm.get("weight");
+    return this.registerForm.get("Weight");
   }
 
   get age(){
-    return this.registerForm.get("age");
+    return this.registerForm.get("Age");
   }
 
   get passwordRegisterConfirm() {

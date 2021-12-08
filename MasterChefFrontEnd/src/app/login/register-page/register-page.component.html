@@ -10,19 +10,19 @@
             <form [formGroup]="registerForm" #rForm="ngForm" class="example-form">
 
                 <mat-form-field class="full-width">
-                    <input id="usernameRegister" type="text" formControlName="usernameRegister" matInput placeholder="Username"
+                    <input id="usernameRegister" type="text" formControlName="Username" matInput placeholder="Username"
                         required>
                     <mat-error *ngIf="usernameRegister">{{getErrorMessageRequiredUsernameRegister()}}</mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="full-width">
-                    <input id="emailRegister" type="text" formControlName="emailRegister" matInput placeholder="Email"
+                    <input id="emailRegister" type="text" formControlName="Email" matInput placeholder="Email"
                         required>
                     <mat-error *ngIf="emailRegister">{{getErrorMessageRequiredEmailRegister()}}</mat-error>
                 </mat-form-field>
 
                 <mat-form-field class="full-width">
-                    <input id="passwordRegister" [type]="hide1 ? 'password' : 'text'" formControlName="passwordRegister" matInput
+                    <input id="passwordRegister" [type]="hide1 ? 'password' : 'text'" formControlName="Password" matInput
                         placeholder="Password" required>
                     <mat-icon [ngStyle]="{'color':'black'}" matSuffix (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
 
@@ -62,7 +62,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="full-width">
-                    <input id="firstName" type="text" formControlName="firstName" matInput placeholder="First Name"
+                    <input id="firstName" type="text" formControlName="FirstName" matInput placeholder="First Name"
                         required>
 
                     <mat-error *ngIf="firstName">
@@ -74,7 +74,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="full-width">
-                    <input id="lastName" type="text" formControlName="lastName" matInput placeholder="Last Name" required>
+                    <input id="lastName" type="text" formControlName="LastName" matInput placeholder="Last Name" required>
 
                     <mat-error *ngIf="lastName">
                         <div *ngIf="getErrorMessageRequiredLastName()!=true">
@@ -85,15 +85,15 @@
                 </mat-form-field>
 
                 <mat-form-field class="full-width">
-                    <input id="height" type="number" formControlName="height" matInput placeholder="Your height">
+                    <input id="height" type="number" formControlName="Height" matInput placeholder="Your height">
                 </mat-form-field>
 
                 <mat-form-field class="full-width">
-                    <input id="weight" type="number" formControlName="weight" matInput placeholder="Your weight">
+                    <input id="weight" type="number" formControlName="Weight" matInput placeholder="Your weight">
                 </mat-form-field>
 
                 <mat-form-field class="full-width">
-                    <input id="age" type="number" formControlName="age" matInput placeholder="Your age">
+                    <input id="age" type="number" formControlName="Age" matInput placeholder="Your age">
                 </mat-form-field>
 
                 <mat-card-actions>

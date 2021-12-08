@@ -47,7 +47,7 @@ namespace MasterChef_backend.Controllers
         }
 
         [HttpPost]
-        public JsonResult Post(User newUser)
+        public JsonResult AddUser(User newUser)
         {
             DataTable table = new DataTable();
             string query = @"insert into [MasterChef].[dbo].[User] (FirstName, LastName, Username, Password, Height, Weight, Age, Email) 
