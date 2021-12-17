@@ -7,10 +7,10 @@
 
         <mat-card-content>
 
-            <form [formGroup]="loginForm" class="example-form">
+            <form [formGroup]="loginForm" #lForm="ngForm" class="example-form">
 
                 <mat-form-field class="full-width">
-                    <input id="emailLogin" type="text" formControlName="emailLogin" matInput placeholder="Email/Username"
+                    <input id="emailLogin" type="text" formControlName="Email" matInput placeholder="Email/Username"
                         required>
                     <mat-error *ngIf="emailLogin">{{getErrorMessageRequiredEmailLogin()}}</mat-error>
                 </mat-form-field>
@@ -18,7 +18,7 @@
 
                 <mat-form-field class="full-width">
                     <input matInput id="passwordLogin" [type]="hide ? 'password' : 'text'"
-                        formControlName="passwordLogin" placeholder="Password" required>
+                        formControlName="Password" placeholder="Password" required>
                     <mat-icon [ngStyle]="{'color':'black'}" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' :
                         'visibility'}}</mat-icon>
 
@@ -40,7 +40,7 @@
                 </mat-checkbox>
 
                 <mat-card-actions>
-                    <button [disabled]="loginForm.invalid" (click)="onLogin(emailLogin?.value, passwordLogin?.value)"
+                    <button [disabled]="loginForm.invalid" (click)="onLogin(lForm)"
                         class="login-button" mat-raised-button color="accent">Login</button>
                 </mat-card-actions>
 

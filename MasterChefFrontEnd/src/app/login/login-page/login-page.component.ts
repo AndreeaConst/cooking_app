@@ -1,5 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ObjectUnsubscribedError } from 'rxjs';
+import { User } from 'src/app/interfaces/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login-page',
@@ -16,18 +21,20 @@ export class LoginPageComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({});
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router
   ) {
   }
 
   ngOnInit(): void {
 
     this.loginForm = this.fb.group({
-      emailLogin: [this.email, Validators.compose(
+      Email: [this.email, Validators.compose(
         [Validators.required]
       )],
 
-      passwordLogin: [this.password,
+      Password: [this.password,
       {
         validators: [
           Validators.compose([
@@ -45,16 +52,31 @@ export class LoginPageComponent implements OnInit {
 
   }
 
-  async onLogin(email: string, password: string) {
-  
+  async onLogin(lForm: { value: User; reset: () => void; }) {
+    
+    this.userService.getUserByEmailAndPassword(lForm.value).subscribe(
+     (response: User) => {
+       console.log(response);
+       if(Object.keys(response).length!=0)
+       {
+       this.router.navigate(['/my-profile']);
+       }
+       else
+       {
+         
+         alert("Ops! Datele de autentificare sunt incorecte!")
+       }
+      }
+      
+   );
   }
 
   get emailLogin() {
-    return this.loginForm.get("emailLogin");
+    return this.loginForm.get("Email");
   }
 
   get passwordLogin() {
-    return this.loginForm.get("passwordLogin");
+    return this.loginForm.get("Password");
   }
 
   getErrorMessageRequiredEmailLogin() {

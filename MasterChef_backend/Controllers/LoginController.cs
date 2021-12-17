@@ -47,11 +47,11 @@ namespace MasterChef_backend.Controllers
         }
 
         [HttpPost]
-        public JsonResult Post(string username, string password)
+        public JsonResult GetUserByEmailAndPassword(User user)
         {
             DataTable table = new DataTable();
             string query = @"select * from [MasterChef].[dbo].[User] 
-                             where Username=@Username and Password=@Password";
+                             where [MasterChef].[dbo].[User].Email=@Email and [MasterChef].[dbo].[User].Password=@Password";
             string sqlDataSource = _configuration.GetConnectionString("MasterchefAppCon");
             SqlDataReader reader;
             using (SqlConnection connection = new SqlConnection(sqlDataSource))
@@ -59,8 +59,8 @@ namespace MasterChef_backend.Controllers
                 connection.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, connection))
                 {
-                    myCommand.Parameters.AddWithValue("@Username", username);
-                    myCommand.Parameters.AddWithValue("@Password", password);
+                    myCommand.Parameters.AddWithValue("@Email", user.Email);
+                    myCommand.Parameters.AddWithValue("@Password", user.Password);
                     reader = myCommand.ExecuteReader();
                     table.Load(reader);
                     reader.Close();
