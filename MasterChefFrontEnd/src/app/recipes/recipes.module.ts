@@ -4,11 +4,13 @@ import { RecipesRoutingModule } from './recipes-routing.module';
 import { RecipesPageComponent } from './recipes-page/recipes-page.component';
 import { MatIconModule } from '@angular/material/icon';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { RecipeDetailsPageComponent } from './recipe-details-page/recipe-details-page.component';
 
 
 @NgModule({
   declarations: [
-    RecipesPageComponent
+    RecipesPageComponent,
+    RecipeDetailsPageComponent
   ],
   imports: [
     CommonModule,
