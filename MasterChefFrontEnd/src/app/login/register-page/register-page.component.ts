@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
+import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class RegisterPageComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private loginService:LoginService
     ){}
 
   ngOnInit(): void {
@@ -73,6 +75,8 @@ export class RegisterPageComponent implements OnInit {
   async onRegister(rForm: { value: User; reset: () => void; }) {
     this.userService.addUser(rForm.value).subscribe(
       (response: User) => {
+        this.loginService.user=response;
+        this.loginService.login();
         this.router.navigate(['/my-profile']);
       },
       (error: HttpErrorResponse) => {

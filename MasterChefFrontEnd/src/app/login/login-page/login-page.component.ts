@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ObjectUnsubscribedError } from 'rxjs';
 import { User } from 'src/app/interfaces/user';
+import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -23,7 +24,8 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private loginService:LoginService
   ) {
   }
 
@@ -55,10 +57,11 @@ export class LoginPageComponent implements OnInit {
   async onLogin(lForm: { value: User; reset: () => void; }) {
     
     this.userService.getUserByEmailAndPassword(lForm.value).subscribe(
-     (response: User) => {
-       console.log(response);
+     (response) => {
        if(Object.keys(response).length!=0)
        {
+      this.loginService.user=response;
+       this.loginService.login();
        this.router.navigate(['/my-profile']);
        }
        else

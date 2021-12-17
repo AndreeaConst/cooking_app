@@ -57,16 +57,16 @@
 				<div class="user-profile flex-1">
 					<div class="pro-details">
 						<div class="sm-text">HELLO EVERYBODY, I AM</div>
-						<div class="name">Pavan Ramshetty</div>
+						<div class="name">{{user.FirstName + " " + user.LastName}}</div>
 
 					</div>
 					<div class="text">You will begin to realise why this exercise is called the Dickens Pattern (with reference to the ghost showing Scrooge some different futures)</div>
 					<div class="pr-list">
 						<ul>
-							<li><i class="fa fa-birthday-cake" aria-hidden="true"></i> 21 y</li>
-							<li> <img src="../assets/images/height-icon.jpg" width="22px">1.55 m</li>
-							<li><i class="fa fa-envelope" aria-hidden="true"></i> xxxxxxxxxxxxxx@gmail.com</li>
-							<li> <img src="https://cdn3.iconfinder.com/data/icons/medical-services-2-2/256/Weight_Management-512.png" width="22px"> 45 kg</li>
+							<li><i class="fa fa-birthday-cake" aria-hidden="true"></i> {{user.Age}}</li>
+							<li> <img src="../assets/images/height-icon.jpg" width="22px">{{user.Height}}</li>
+							<li> <img src="https://cdn3.iconfinder.com/data/icons/medical-services-2-2/256/Weight_Management-512.png" width="22px"> {{user.Weight}}</li>
+							<li><i class="fa fa-envelope" aria-hidden="true"></i> {{user.Email}}</li>
 						</ul>
 					</div>
 

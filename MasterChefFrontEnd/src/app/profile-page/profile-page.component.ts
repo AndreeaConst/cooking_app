@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../interfaces/user';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -6,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-page.component.less']
 })
 export class ProfilePageComponent implements OnInit {
-
-  constructor() { }
+   user!:User;
+  constructor(private loginService:LoginService) {this.user=loginService.user; }
 
   ngOnInit(): void {
   }
