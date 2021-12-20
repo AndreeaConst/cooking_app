@@ -47,11 +47,12 @@ namespace MasterChef_backend.Controllers
         }
 
         [HttpPost]
-        public JsonResult Post(Recipe newRecipe)
+        public Recipe SearchByName(string nameOfRecipe)
         {
+            Recipe result = new Recipe();
             DataTable table = new DataTable();
-            string query = @"insert into [MasterChef].[dbo].[Recipe] (Name, CaloriesNo, Description, Image, PreparingTime, Servings) 
-                             values (@Name, @CaloriesNo, @Description, @Image, @PreparingTime, @Servings)";
+            string query = @"select * from [MasterChef].[dbo].[Recipe] 
+                             where [MasterChef].[dbo].[Recipe].Name=@Name";
             string sqlDataSource = _configuration.GetConnectionString("MasterchefAppCon");
             SqlDataReader reader;
             using (SqlConnection connection = new SqlConnection(sqlDataSource))
@@ -59,20 +60,27 @@ namespace MasterChef_backend.Controllers
                 connection.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, connection))
                 {
-                    myCommand.Parameters.AddWithValue("@Name", newRecipe.Name);
-                    myCommand.Parameters.AddWithValue("@CaloriesNo", newRecipe.CaloriesNo);
-                    myCommand.Parameters.AddWithValue("@Description", newRecipe.Description);
-                    myCommand.Parameters.AddWithValue("@Image", newRecipe.Image);
-                    myCommand.Parameters.AddWithValue("@PreparingTime", newRecipe.PreparingTime);
-                    myCommand.Parameters.AddWithValue("@Servings", newRecipe.Servings);
+                    myCommand.Parameters.AddWithValue("@Name", nameOfRecipe);
                     reader = myCommand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        result.Name = (string)reader["Name"];
+                        result.CaloriesNo = (int)reader["CaloriesNo"];
+                        result.Description = (string)reader["Description"];
+                        result.Image = (string)reader["Image"];
+                        result.PreparingTime = (int)reader["PreparingTime"];
+                        result.Servings = (int)reader["Servings"];
+
+                    }
+                    reader.Close();
+                    connection.Close();
                     table.Load(reader);
                     reader.Close();
                     connection.Close();
                 }
             }
 
-            return new JsonResult(table);
+            return result;
 
         }
     }

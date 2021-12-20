@@ -49,7 +49,7 @@ namespace MasterChef_backend.Controllers
         [HttpPost]
         public User GetUserByEmailAndPassword(User user)
         {
-            User result=new Models.User();
+            User result=new User();
             string query = @"select * from [MasterChef].[dbo].[User] 
                              where [MasterChef].[dbo].[User].Email=@Email and [MasterChef].[dbo].[User].Password=@Password";
             string sqlDataSource = _configuration.GetConnectionString("MasterchefAppCon");

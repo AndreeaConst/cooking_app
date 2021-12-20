@@ -58,7 +58,7 @@ export class LoginPageComponent implements OnInit {
     
     this.userService.getUserByEmailAndPassword(lForm.value).subscribe(
      (response) => {
-       if(Object.keys(response).length!=0)
+       if(response.FirstName!=null)
        {
       this.loginService.user=response;
        this.loginService.login();
