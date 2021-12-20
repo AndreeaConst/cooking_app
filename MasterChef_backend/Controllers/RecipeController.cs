@@ -83,5 +83,43 @@ namespace MasterChef_backend.Controllers
             return result;
 
         }
+
+        [HttpPost]
+        public Recipe SearchByPreparingTime(int preparingTime)
+        {
+            Recipe result = new Recipe();
+            DataTable table = new DataTable();
+            string query = @"select * from [MasterChef].[dbo].[Recipe] 
+                             where [MasterChef].[dbo].[Recipe].PreparingTime=@PreparingTime";
+            string sqlDataSource = _configuration.GetConnectionString("MasterchefAppCon");
+            SqlDataReader reader;
+            using (SqlConnection connection = new SqlConnection(sqlDataSource))
+            {
+                connection.Open();
+                using (SqlCommand myCommand = new SqlCommand(query, connection))
+                {
+                    myCommand.Parameters.AddWithValue("@PreparingTime", preparingTime);
+                    reader = myCommand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        result.Name = (string)reader["Name"];
+                        result.CaloriesNo = (int)reader["CaloriesNo"];
+                        result.Description = (string)reader["Description"];
+                        result.Image = (string)reader["Image"];
+                        result.PreparingTime = (int)reader["PreparingTime"];
+                        result.Servings = (int)reader["Servings"];
+
+                    }
+                    reader.Close();
+                    connection.Close();
+                    table.Load(reader);
+                    reader.Close();
+                    connection.Close();
+                }
+            }
+
+            return result;
+
+        }
     }
 }
