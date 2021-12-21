@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recipe-details-page.component.less']
 })
 export class RecipeDetailsPageComponent implements OnInit {
-  c = 0;
+  c = 1;
   constructor() { }
 
   ngOnInit(): void {

@@ -118,9 +118,9 @@
     float: left;
     width: 60px;
     height: 60px;
-    background-color: rgba(255,253,112,0.8);
+    background-color: rgba(255, 155, 109, 0.8);
   border-radius:50% ;
-  margin: 16px;
+  margin: 12px;
   margin-bottom: 0px;
   opacity: 0;
     -webkit-transition: all 0.5s;
@@ -137,10 +137,11 @@
   .sub_mins > h3 {
     font-size: 24px;
   margin-top: 7px;
-    margin-bottom: -15px;
+    margin-bottom: -10px;
   }
   
   .sub_mins > span {
+    margin-top: 10px;
     font-size: 9px; 
     font-weight: 700;
   }
@@ -150,9 +151,9 @@
     float: left;
     width: 60px;
     height: 60px;
-    background-color: rgba(255,253,112,0.8);
+    background-color: rgba(255, 155, 109, 0.8);
   border-radius:50% ;
-  margin: 16px;
+  margin: 12px;
   opacity: 0;
     -webkit-transition: all 0.5s;
     -o-transition: all 0.5s;
@@ -166,7 +167,7 @@
   .cont_servings > h3 {
     font-size: 24px;
   margin-top: 5px;
-    margin-bottom: -15px;
+    margin-bottom: -10px;
   }
   
   .cont_servings > span {
@@ -186,9 +187,8 @@
   
   .cont_detalles {
     position: absolute;
-  bottom:-185px;
-    height: 200px;
-    border-radius:5px ;
+  bottom:-250px;
+    height: 250px;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+100,000000+101&0+0,0.65+68 */
   background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 68%, rgba(0,0,0,0.65) 100%, rgba(0,0,0,0.65) 101%); /* FF3.6-15 */
   background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 68%,rgba(0,0,0,0.65) 100%,rgba(0,0,0,0.65) 101%); /* Chrome10-25,Safari5.1-6 */
@@ -206,16 +206,30 @@
   
   
   .cont_detalles > h3 {
-    margin-top: 50px;
-   color: #fff;
-    font-size: 24px;
+    font-family: lady-like;
+    text-shadow: 2px 2px #c03903;
+   color: rgb(255, 255, 255);
+   font-weight: 550;
+    font-size: 40px;
   }
+
+  .cont_detalles > h2 {
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px #c03903;
+    font-family: lady-like;
+     font-size: 25px;
+     font-weight: 500;
+   }
   
   .cont_detalles > p {
-    color: #fff;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 1px #c03903;
   width: 80%;
+  font-family:Gabriola;
+  margin-left: 15px;
+  font-weight: 500;
     text-align:left;
-    font-size: 14px;
+    font-size: 21px;
   }
   
   /* ---------------- Css Tabs -------- */
@@ -241,6 +255,7 @@
   }
   
   .cont_tabs > ul > li > a {
+    font-family: Gabriola;
   border-top: 7px solid #ED346C;
     position: relative;
     display: block;
@@ -254,7 +269,8 @@
   
   .cont_tabs > ul > li:first-child > a
   {
-    border-top: 7px solid rgba(237, 52, 108, 0);
+    font-family: Gabriola;
+    border-top: 7px solid rgba(180, 31, 76, 0);
     margin-top: 0px;
     color: #9A96A4;
   -webkit-transition: all 0.5s;
@@ -263,27 +279,28 @@
   transition: all 0.2s;
   }
   
-  .cont_tabs > ul > li:first-child > a:hover {
-    border-top: 7px solid #ED346C;
+  .cont_tabs > ul > li:first-child > a {
+    border-top: 7px solid #ed5934;
   padding-top: 15px;
     color: #241C3E;
    margin-top: 0px;
   }
   
   .cont_btn_open_dets {
+    font-family: Gabriola;
     position: absolute;
     right: -15px;
     top:50%;
   }
-  .cont_btn_open_dets  > a {
-  display: block;
+  .cont_btn_open_dets  > button {
+    font-family: Gabriola;
     padding-top: -5px;
   width: 30px;
     height: 30px;
-    background-color: #ED2460;
+    background-color: #ed4224;
   border-radius:50% ;
   color: #fff;
-  box-shadow: 0px 0px 20px -2px rgba(237, 36, 96, 1);
+  box-shadow: 0px 0px 20px -2px rgb(245, 59, 2);
   -webkit-transition: all 0.5s;
   -o-transition: all 0.5s;
   transition: all 0.5s;
@@ -308,7 +325,7 @@
   font-size: 14px;
     margin-left: 40px;
   text-align: left;
-  color: #36354E;
+  color: #f1532c;
   }
   
   .cont_info_preparation {
@@ -316,10 +333,11 @@
     float: left;
   }
   .cont_info_preparation > p {
+    font-family: Gabriola;
     margin: 5px 0px;
     margin-left: 50px;
   border-left: 2px solid #E3E3E3; 
-  font-size: 12px;
+  font-size: 17px;
     padding: 20px 0px;
   padding-left: 20px;
   text-align: left;
@@ -349,7 +367,7 @@
     width: 410px;
   }
   
-  .cont_modal_active > .cont_text_ingredients  > .cont_btn_open_dets > a {
+  .cont_modal_active > .cont_text_ingredients  > .cont_btn_open_dets > button {
     transform: rotate(0deg);
   }
   .cont_modal_active > .cont_text_ingredients{
