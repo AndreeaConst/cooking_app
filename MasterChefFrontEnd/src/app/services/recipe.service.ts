@@ -14,8 +14,8 @@ export class RecipeService {
     return this.http.get<Recipe[]>(`${this.apiServerUrl}/recipeController`);
   }
 
-  public searchRecipeByName(inputRecipe: Recipe):Observable<Recipe> {
+  public searchRecipeByName(inputRecipe: Recipe):Observable<Recipe[]> {
     console.log(inputRecipe.Name);
-     return this.http.post<Recipe>(`${this.apiServerUrl}/recipeController`, inputRecipe);
+     return this.http.post<Recipe[]>(`${this.apiServerUrl}/recipeController`, inputRecipe);
    }
 }

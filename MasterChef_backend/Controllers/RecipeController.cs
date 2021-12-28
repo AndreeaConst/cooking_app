@@ -47,10 +47,9 @@ namespace MasterChef_backend.Controllers
         }
 
         [HttpPost]
-        public Recipe SearchRecipeByName(Recipe inputRecipe)
+        public Recipe[] SearchRecipeByName(Recipe inputRecipe)
         {
-            Recipe result = new Recipe();
-            DataTable table = new DataTable();
+            List<Recipe> results = new List<Recipe>();
             string query = @"select * from [MasterChef].[dbo].[Recipe] 
                              where [MasterChef].[dbo].[Recipe].Name=@Name";
             string sqlDataSource = _configuration.GetConnectionString("MasterchefAppCon");
@@ -62,25 +61,30 @@ namespace MasterChef_backend.Controllers
                 {
                     myCommand.Parameters.AddWithValue("@Name", inputRecipe.Name);
                     reader = myCommand.ExecuteReader();
-                    while (reader.Read())
+                    if(reader.HasRows)
                     {
-                        result.Name = (string)reader["Name"];
-                        result.Description = (string)reader["Description"];
-                        //result.CaloriesNo = (int)reader["CaloriesNo"];
-                        result.Image = (string)reader["Image"];
-                        result.PreparingTime = (int)reader["PreparingTime"];
-                        result.Servings = (int)reader["Servings"];
-
+                        do
+                        {
+                            while (reader.Read())
+                            {
+                                Recipe result = new Recipe();
+                                result.Name = (string)reader["Name"];
+                                result.Description = (string)reader["Description"];
+                                result.CaloriesNo = (int)reader["CaloriesNo"];
+                                result.Image = (string)reader["Image"];
+                                result.PreparingTime = (int)reader["PreparingTime"];
+                                result.Servings = (int)reader["Servings"];
+                                results.Add(result);
+                            }
+                        } while (reader.NextResult());
+                        reader.Close();
+                        connection.Close();
                     }
-                    reader.Close();
-                    connection.Close();
-                    table.Load(reader);
-                    reader.Close();
-                    connection.Close();
+                    
                 }
             }
 
-            return result;
+            return results.ToArray();
 
         }
 

@@ -55,13 +55,15 @@ export class RecipesPageComponent implements OnInit {
      this.inputRecipe=new Recipe(event.target.value);           
     this.recipeService.searchRecipeByName(this.inputRecipe).subscribe(
      (response) => {
-       if(response.Name!=null)
+       if(response.length>0)
        {
-         this.responseRecipe=response;
-         
-           this.recipes.push(this.responseRecipe);
-         
-         
+
+         console.log(response);
+        for(let i=0; i<response.length; i++)
+        {
+            this.recipes.push(response[i]);
+        }
+        
        }
        else
        {
