@@ -3,8 +3,8 @@
         <div class="container mt-3" style="text-align:center">
             <div class="row">
                 <div class="col-12 search" style="display: flex; flex-direction: row; align-items: center;">
-                    <input type="text" class="form-control search-fontsize" placeholder="Type here a recipe you want..." />
-                    <mat-icon>search</mat-icon>
+                    <input type="text" name="recipeName"  (keyup.enter)="searchByName($event)" class="form-control search-fontsize" placeholder="Type here a recipe you want..." />
+                    
                 </div>
             </div>
 

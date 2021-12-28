@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Recipe } from 'src/app/interfaces/recipe';
+import { RecipeService } from 'src/app/services/recipe.service';
 
-export interface Tile {
+/*export interface Tile {
   color: string;
   cols: number;
   rows: number;
   text: string;
-}
+}*/
 @Component({
   selector: 'app-recipes-page',
   templateUrl: './recipes-page.component.html',
@@ -15,14 +18,60 @@ export interface Tile {
 
 export class RecipesPageComponent implements OnInit {
 
-  constructor() { }
+  recipeName='';
+  responseRecipe!:Recipe;
+  recipes:Recipe[]=[];
+  inputRecipe!:Recipe;  
+
+  hide = true;
+  recipeForm: FormGroup = new FormGroup({});
+
+  constructor(
+    private fb: FormBuilder,
+    private recipeService: RecipeService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-    
-    
+    /*this.recipeService.getRecipe().subscribe(
+      (response) => {
+        if(response!=null)
+        {
+            this.recipes=response;
+          
+        }
+        else
+        {
+          alert("Nu exista retete!")
+        }
+       }
+    );*/
   }
 
-  recipes:Recipe[]=[
-    {RecipeId: 1, Name: 'Cookie', CaloriesNo: 100, Description: 'bla bla', Image: 'bla bla', PreparingTime: 60, Servings: 1},
-  {RecipeId: 1, Name: 'Salad', CaloriesNo: 100, Description: 'bla bla', Image: 'bla bla', PreparingTime: 60, Servings: 1}];
-}
+
+
+  async searchByName(event:any) {
+    this.recipes=[];
+     this.inputRecipe=new Recipe(event.target.value);           
+    this.recipeService.searchRecipeByName(this.inputRecipe).subscribe(
+     (response) => {
+       if(response.Name!=null)
+       {
+         this.responseRecipe=response;
+         
+           this.recipes.push(this.responseRecipe);
+         
+         
+       }
+       else
+       {
+         alert("Nu am gasit reteta!")
+       }
+      }
+      
+      );
+    }
+    
+  }
+   
+

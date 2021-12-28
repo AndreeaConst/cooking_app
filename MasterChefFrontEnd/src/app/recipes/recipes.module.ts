@@ -5,18 +5,20 @@ import { RecipesPageComponent } from './recipes-page/recipes-page.component';
 import { MatIconModule } from '@angular/material/icon';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { RecipeDetailsPageComponent } from './recipe-details-page/recipe-details-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     RecipesPageComponent,
-    RecipeDetailsPageComponent
+    RecipeDetailsPageComponent,
   ],
   imports: [
     CommonModule,
     RecipesRoutingModule,
     MatIconModule,
-    MatGridListModule
+    MatGridListModule,
+   FormsModule, ReactiveFormsModule
   ]
 })
 export class RecipesModule { }
