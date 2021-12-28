@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { RecipeDetailsPageComponent } from './recipe-details-page/recipe-details-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RecipesRoutingModule,
     MatIconModule,
     MatGridListModule,
-   FormsModule, ReactiveFormsModule
+    FormsModule, ReactiveFormsModule,
+    MatButtonModule
   ]
 })
 export class RecipesModule { }

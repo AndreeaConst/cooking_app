@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-recipe-details-page',
@@ -6,11 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recipe-details-page.component.less']
 })
 export class RecipeDetailsPageComponent implements OnInit {
-  c = 1;
-  constructor() { }
+    c = 1;
+    @ViewChild('ingredDiv', { static: false })ingredDivRef!: ElementRef;
+    @ViewChild('prepDiv', { static: false })prepDivRef!: ElementRef;
 
-  ngOnInit(): void {
-  }
+    constructor(private renderer: Renderer2) { }
+
+    ngOnInit(): void {
+    }
    
     open_close(){
         if(this.c % 2 == 0){    
@@ -21,6 +24,16 @@ export class RecipeDetailsPageComponent implements OnInit {
         this.c += 1;    
         }  
     } 
+
+    onClickPrep(){
+      this.renderer.setStyle(this.ingredDivRef.nativeElement, 'display', 'none');
+      this.renderer.setStyle(this.prepDivRef.nativeElement, 'display', 'block');
+    }
+
+    onClickIngredients(){
+      this.renderer.setStyle(this.prepDivRef.nativeElement, 'display', 'none');
+      this.renderer.setStyle(this.ingredDivRef.nativeElement, 'display', 'block');
+    }
   
 
 }

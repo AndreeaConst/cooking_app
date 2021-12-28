@@ -1,14 +1,14 @@
 <div class="page-container">
     <div class="content-wrap">
-        <div class="container mt-3" style="text-align:center">
-            <div class="row">
+        <div class="mt-3" style="text-align:center">
                 <div class="col-12 search" style="display: flex; flex-direction: row; align-items: center;">
-                    <input type="text" name="recipeName"  (keyup.enter)="searchByName($event)" class="form-control search-fontsize" placeholder="Type here a recipe you want..." />
+
+                    <button routerLink="../my-profile" mat-raised-button color="warn" style="margin-right: 100px; width: 200px;">Back to my profile</button>
+                    <input style="width: 70%" type="text" name="recipeName"  (keyup.enter)="searchByName($event)" class="form-control search-fontsize" placeholder="Type here a recipe you want..." />
                     
                 </div>
-            </div>
 
-            <div class="mt-3 mb-3">
+            <div class="mt-3 mb-5">
                 <mat-grid-list cols="1" rowHeight="100px">
                     <mat-grid-tile *ngFor="let recipe of recipes" style="border: 3px solid black; border-color: orange">
                         <div>
@@ -22,6 +22,8 @@
                         </div>
                     </mat-grid-tile>
                 </mat-grid-list>
+
+                <div #noRecipesDiv class="noRecipesDiv">No recipes found!</div>
                 
             </div>
         </div>

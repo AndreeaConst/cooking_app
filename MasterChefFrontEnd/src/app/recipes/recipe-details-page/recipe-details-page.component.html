@@ -1,65 +1,104 @@
 
 
-<div class="cont_principal">
+<div class="cont_principal" style="margin-bottom: 100px;">
+  <button routerLink="../" mat-raised-button color="warn" style="margin-top: 10px; margin-left: 10px; width: 200px; display: flex;">Back to recipes list</button>
     <div class="cont_central">
       <div class="cont_modal cont_modal_active">
-      <div class="cont_photo">
-    <div class="cont_img_back">
-        <img src="https://wallpaperaccess.com/full/1184035.jpg" alt="" />
-        </div>
-    <div class="cont_mins">
-        <div class="sub_mins">
-      <h3>50</h3>
-    <span>MINS</span>
-      </div>
-      <div class="cont_icon_right">
-      </div>
-        </div>
-    <div class="cont_servings">
-          <h3>4</h3>
-    <span>SERVINGS</span>
-        </div>
-    <div class="cont_detalles">
-        <h3>Pizza</h3>
-    <p>consectetur adipiscing elit. Aliquam sagittis est est aliquam, sed faucibus massa lobortis. Maecenas non est justo.</p>
-    <h2>Ingredients</h2>
-    <p> tomato, potato, etc </p>
+        <div class="cont_photo">
+
+          <div class="cont_img_back">
+            <img src="https://wallpaperaccess.com/full/1184035.jpg" alt="" />
+          </div>
+
+          <div class="cont_mins">
+            <div class="sub_mins">
+              <h3>50</h3>
+              <span>MINS</span>
+            </div>
+            <div class="cont_icon_right"></div>
+          </div>
+
+          <div class="cont_servings">
+            <h3>4</h3>
+            <span>SERVINGS</span>
+          </div>
+
+          <div class="cont_detalles">
+            <h3 style="margin-top:50px">Pizza</h3>
+          </div>
 
         </div>
-        </div>
-    <div class="cont_text_ingredients">
-    <div class="cont_over_hidden">
+
+        <div class="cont_text_ingredients">
+
+          <div class="cont_over_hidden">
      
-      <div class="cont_tabs">
-      <ul>
-        <li><a><h4>PREPARATION</h4></a></li>
-      </ul>  
-      </div>
-       
-      <div class="cont_text_det_preparation">
-      <div class="cont_title_preparation">
-        <p>STEP 1</p>
-        </div>
-      <div class="cont_info_preparation">
-        <p>Heat oven to 375 degress</p>
-        </div>  
-      <div class="cont_text_det_preparation">
-    
-      <div class="cont_title_preparation">
-        <p>STEP 2</p>
-        </div>
-      <div class="cont_info_preparation">
-        <p>Heat oil in a large skillet over medium-low head. Add onion and bell papper. Cook gently until very soft, about 20 minutes. Add garlic and cook until tender, 1 to 2 minutes; stir in cumin, paprika and cook 1 minute. Pour in tomatoes and season with 3/4 teaspoon salt and 1/4 teaspoon pepper;</p>
-        </div> 
-      
-      </div>
-    </div>  
+            <div class="cont_tabs">
+              <ul>
+              <li><div type="button" (click)="onClickPrep()"><h4>PREPARATION</h4></div></li>
+              <li><div type="button" (click)="onClickIngredients()"><h4>INGREDIENTS</h4></div></li>
+              </ul>  
+            </div>
+            
+            <div #ingredDiv class="ingredDiv">
+              <div>
+                <hr width="30px" color="orange">
+                <p>Tomatoes</p>
+                <hr width="30px" color="orange">
+              </div>
+              
+              <div>
+                <hr width="30px" color="orange">
+                <p>Cheese</p>
+                <hr width="30px" color="orange">
+              </div>
+              <div>
+                <hr width="30px" color="orange">
+                <p>Flour</p>
+                <hr width="30px" color="orange">
+              </div>
+              <div>
+                <hr width="30px" color="orange">
+                <p>Olives</p>
+                <hr width="30px" color="orange">
+              </div>
+            </div>
+
+            <div #prepDiv class="cont_text_det_preparation scroll">
+                Heat oven to 375 degress
+                Heat oil in a large skillet over medium-low head. Add onion and bell papper. 
+                Cook gently until very soft, about 20 minutes. Add garlic and cook until tender, 1 to 2 minutes; 
+                stir in cumin, paprika and cook 1 minute. Pour in tomatoes and season with 3/4 teaspoon salt and 1/4 teaspoon pepper;
+            </div>  
         
-      </div>
-      <div class="cont_btn_open_dets">
-      <button type="button" (click)="open_close()"><i class="material-icons"><</i></button>
-      </div>
+          </div>
+
+          <div class="cont_btn_open_dets">
+            <button type="button" (click)="open_close()"><i class="material-icons"><</i></button>
+          </div>
     
         </div>
-       </div>
+      </div>
     </div>
+
+    <div class="footer">
+      <div class="col-4 footer-divs">
+          Studenti:
+          <br>
+          Cibotaru Bianca, grupa 10LF291
+          <br>
+          Constantinescu Andreea, grupa 10LF291
+          <br>
+          Gramada Catalina, grupa 10LF292
+      </div>
+      <div class="col-4 footer-divs">
+          <img src="../assets/images/Masterchef logo.png" width="300px" height="200px">
+      </div>
+      <div class="col-4 footer-divs">
+          Inginerie Software Masterchef@2021
+      </div>
+          
+  </div>
+</div>
+
+
