@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Recipe } from 'src/app/interfaces/recipe';
@@ -22,14 +22,13 @@ export class RecipesPageComponent implements OnInit {
   responseRecipe!:Recipe;
   recipes:Recipe[]=[];
   inputRecipe!:Recipe;  
-
-  hide = true;
   recipeForm: FormGroup = new FormGroup({});
+  @ViewChild('noRecipesDiv', { static: false })noRecipesDivRef!: ElementRef;
 
   constructor(
-    private fb: FormBuilder,
     private recipeService: RecipeService,
-    private router: Router
+    private router: Router,
+    private renderer: Renderer2
   ) { }
 
   ngOnInit(): void {
@@ -52,24 +51,20 @@ export class RecipesPageComponent implements OnInit {
 
   async searchByName(event:any) {
     this.recipes=[];
-     this.inputRecipe=new Recipe(event.target.value);           
+    this.inputRecipe=new Recipe(event.target.value);           
     this.recipeService.searchRecipeByName(this.inputRecipe).subscribe(
      (response) => {
        if(response.Name!=null)
        {
          this.responseRecipe=response;
-         
-           this.recipes.push(this.responseRecipe);
-         
-         
+         this.recipes.push(this.responseRecipe);
+         this.renderer.setStyle(this.noRecipesDivRef.nativeElement, 'display', 'block');
        }
        else
        {
-         alert("Nu am gasit reteta!")
+        this.renderer.setStyle(this.noRecipesDivRef.nativeElement, 'display', 'block');
        }
-      }
-      
-      );
+      });
     }
     
   }
