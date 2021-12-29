@@ -24,9 +24,9 @@ namespace MasterChef_backend.Controllers
         }
 
         [HttpGet]
-        public JsonResult Get()
+        public Recipe[] Get()
         {
-            DataTable table = new DataTable();
+            List<Recipe> results = new List<Recipe>();
             string query = @"select * from [MasterChef].[dbo].[Recipe]";
             string sqlDataSource = _configuration.GetConnectionString("MasterchefAppCon");
             SqlDataReader reader;
@@ -36,13 +36,27 @@ namespace MasterChef_backend.Controllers
                 using (SqlCommand myCommand = new SqlCommand(query, connection))
                 {
                     reader = myCommand.ExecuteReader();
-                    table.Load(reader);
+                    while (reader.Read())
+                    {
+                        Recipe result = new Recipe();
+                        result.Name = (string)reader["Name"];
+                        result.Description = (string)reader["Description"];
+                        result.CaloriesNo = (int)reader["CaloriesNo"];
+                        result.Image = (string)reader["Image"];
+                        result.PreparingTime = (int)reader["PreparingTime"];
+                        result.Servings = (int)reader["Servings"];
+                        results.Add(result);
+
+
+                    }
+
                     reader.Close();
+
                     connection.Close();
                 }
             }
 
-            return new JsonResult(table);
+            return results.ToArray();
 
         }
 
@@ -50,8 +64,9 @@ namespace MasterChef_backend.Controllers
         public Recipe[] SearchRecipeByName(Recipe inputRecipe)
         {
             List<Recipe> results = new List<Recipe>();
-            string query = @"select * from [MasterChef].[dbo].[Recipe] 
-                             where [MasterChef].[dbo].[Recipe].Name=@Name";
+            string[] words = inputRecipe.Name.Split(" ");
+            string query = @"SELECT * FROM [MasterChef].[dbo].[Recipe] 
+                             WHERE [MasterChef].[dbo].[Recipe].Name =@Name";
             string sqlDataSource = _configuration.GetConnectionString("MasterchefAppCon");
             SqlDataReader reader;
             using (SqlConnection connection = new SqlConnection(sqlDataSource))
@@ -61,69 +76,105 @@ namespace MasterChef_backend.Controllers
                 {
                     myCommand.Parameters.AddWithValue("@Name", inputRecipe.Name);
                     reader = myCommand.ExecuteReader();
-                    if(reader.HasRows)
+                    while (reader.Read())
                     {
-                        do
-                        {
-                            while (reader.Read())
-                            {
-                                Recipe result = new Recipe();
-                                result.Name = (string)reader["Name"];
-                                result.Description = (string)reader["Description"];
-                                result.CaloriesNo = (int)reader["CaloriesNo"];
-                                result.Image = (string)reader["Image"];
-                                result.PreparingTime = (int)reader["PreparingTime"];
-                                result.Servings = (int)reader["Servings"];
-                                results.Add(result);
-                            }
-                        } while (reader.NextResult());
-                        reader.Close();
-                        connection.Close();
+                        Recipe result = new Recipe();
+                        result.Name = (string)reader["Name"];
+                        result.Description = (string)reader["Description"];
+                        result.CaloriesNo = (int)reader["CaloriesNo"];
+                        result.Image = (string)reader["Image"];
+                        result.PreparingTime = (int)reader["PreparingTime"];
+                        result.Servings = (int)reader["Servings"];
+                        results.Add(result);
+
+
                     }
-                    
+
+                    reader.Close();
+
+                    connection.Close();
                 }
+
+                if (results.Count == 0)
+                {
+                    foreach(var word in words)
+                    {
+                        connection.Open();
+                        using (SqlCommand myCommand = new SqlCommand(query, connection))
+                        {
+                            myCommand.Parameters.AddWithValue("@Name", word);
+                            reader = myCommand.ExecuteReader();
+                            if (reader.HasRows)
+                            {
+                                do
+                                {
+                                    while (reader.Read())
+                                    {
+                                        int ok = 0;
+                                        Recipe result = new Recipe();
+                                        result.Name = (string)reader["Name"];
+                                        result.Description = (string)reader["Description"];
+                                        result.CaloriesNo = (int)reader["CaloriesNo"];
+                                        result.Image = (string)reader["Image"];
+                                        result.PreparingTime = (int)reader["PreparingTime"];
+                                        result.Servings = (int)reader["Servings"];
+                                        int index = results.FindIndex(r => r.Description.Equals(result.Description));
+                                        if (index == -1)
+                                        {
+                                            results.Add(result);
+                                        }
+
+                                    }
+                                } while (reader.NextResult());
+                                reader.Close();
+                            }
+                        }
+                        connection.Close();
+
+                    }
+                }
+
+                return results.ToArray();
+
             }
-
-            return results.ToArray();
-
         }
 
-        //[HttpPost]
-        //public Recipe SearchByPreparingTime(int preparingTime)
-        //{
-        //    Recipe result = new Recipe();
-        //    DataTable table = new DataTable();
-        //    string query = @"select * from [MasterChef].[dbo].[Recipe] 
-        //                     where [MasterChef].[dbo].[Recipe].PreparingTime=@PreparingTime";
-        //    string sqlDataSource = _configuration.GetConnectionString("MasterchefAppCon");
-        //    SqlDataReader reader;
-        //    using (SqlConnection connection = new SqlConnection(sqlDataSource))
-        //    {
-        //        connection.Open();
-        //        using (SqlCommand myCommand = new SqlCommand(query, connection))
-        //        {
-        //            myCommand.Parameters.AddWithValue("@PreparingTime", preparingTime);
-        //            reader = myCommand.ExecuteReader();
-        //            while (reader.Read())
-        //            {
-        //                result.Name = (string)reader["Name"];
-        //                result.CaloriesNo = (int)reader["CaloriesNo"];
-        //                result.Description = (string)reader["Description"];
-        //                result.Image = (string)reader["Image"];
-        //                result.PreparingTime = (int)reader["PreparingTime"];
-        //                result.Servings = (int)reader["Servings"];
+            //[HttpPost]
+            //public Recipe SearchByPreparingTime(int preparingTime)
+            //{
+            //    Recipe result = new Recipe();
+            //    DataTable table = new DataTable();
+            //    string query = @"select * from [MasterChef].[dbo].[Recipe] 
+            //                     where [MasterChef].[dbo].[Recipe].PreparingTime=@PreparingTime";
+            //    string sqlDataSource = _configuration.GetConnectionString("MasterchefAppCon");
+            //    SqlDataReader reader;
+            //    using (SqlConnection connection = new SqlConnection(sqlDataSource))
+            //    {
+            //        connection.Open();
+            //        using (SqlCommand myCommand = new SqlCommand(query, connection))
+            //        {
+            //            myCommand.Parameters.AddWithValue("@PreparingTime", preparingTime);
+            //            reader = myCommand.ExecuteReader();
+            //            while (reader.Read())
+            //            {
+            //                result.Name = (string)reader["Name"];
+            //                result.CaloriesNo = (int)reader["CaloriesNo"];
+            //                result.Description = (string)reader["Description"];
+            //                result.Image = (string)reader["Image"];
+            //                result.PreparingTime = (int)reader["PreparingTime"];
+            //                result.Servings = (int)reader["Servings"];
 
-        //            }
-        //            reader.Close();
-        //            connection.Close();
-        //            table.Load(reader);
-        //            reader.Close();
-        //            connection.Close();
-        //        }
-        //    }
+            //            }
+            //            reader.Close();
+            //            connection.Close();
+            //            table.Load(reader);
+            //            reader.Close();
+            //            connection.Close();
+            //        }
+            //    }
 
-        //    return result;
+            //    return result;
 
-        //}
+            //}
+        }
     }
-}
