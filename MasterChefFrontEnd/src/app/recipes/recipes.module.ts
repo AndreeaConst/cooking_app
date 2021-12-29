@@ -7,6 +7,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { RecipeDetailsPageComponent } from './recipe-details-page/recipe-details-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatGridListModule,
     FormsModule, ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatRadioModule
   ]
 })
 export class RecipesModule { }

@@ -1,15 +1,10 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Recipe } from 'src/app/interfaces/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
 
-/*export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
-  text: string;
-}*/
+
 @Component({
   selector: 'app-recipes-page',
   templateUrl: './recipes-page.component.html',
@@ -28,14 +23,25 @@ export class RecipesPageComponent implements OnInit {
   @ViewChild('noRecipesDiv', { static: false })noRecipesDivRef!: ElementRef;
 
   constructor(
-    private fb: FormBuilder,
     private recipeService: RecipeService,
     private router: Router,
     private renderer: Renderer2
   ) { }
 
   ngOnInit(): void {
-    this.getAllRecipes();
+    //this.getAllRecipes();
+    this.recipes=[
+      {RecipeId: 1, Name: 'Cookie', CaloriesNo: 100, Description: 'bla bla', Image: 'bla bla', PreparingTime: 60, Servings: 1},
+      {RecipeId: 2, Name: 'Macaroni', CaloriesNo: 500, Description: 'bla bla', Image: 'bla bla', PreparingTime: 30, Servings: 1},
+      {RecipeId: 3, Name: 'Spaghetti', CaloriesNo: 450, Description: 'bla bla', Image: 'bla bla', PreparingTime: 25, Servings: 1},
+      {RecipeId: 4, Name: 'Pancakes', CaloriesNo: 325, Description: 'bla bla', Image: 'bla bla', PreparingTime: 30, Servings: 1},
+      {RecipeId: 5, Name: 'Pizza', CaloriesNo: 450, Description: 'bla bla', Image: 'bla bla', PreparingTime: 125, Servings: 1},
+      {RecipeId: 6, Name: 'Hamburger', CaloriesNo: 268, Description: 'bla bla', Image: 'bla bla', PreparingTime: 15, Servings: 1},
+      {RecipeId: 7, Name: 'Vegetarian Pizza', CaloriesNo: 450, Description: 'bla bla', Image: 'bla bla', PreparingTime: 125, Servings: 1},
+      {RecipeId: 8, Name: 'Potatoes with cheese', CaloriesNo: 380, Description: 'bla bla', Image: 'bla bla', PreparingTime: 40, Servings: 1},
+      {RecipeId: 9, Name: 'Fruit salad with sea fruit', CaloriesNo: 100, Description: 'bla bla', Image: 'bla bla', PreparingTime: 60, Servings: 1},
+      {RecipeId: 10, Name: 'Tomato soup', CaloriesNo: 260, Description: 'bla bla', Image: 'bla bla', PreparingTime: 60, Servings: 1},
+    ];
   }
 
   async getAllRecipes(){
@@ -72,18 +78,47 @@ export class RecipesPageComponent implements OnInit {
         {
           this.recipes=response;
           this.renderer.setStyle(this.noRecipesDivRef.nativeElement, 'display', 'none');
-          
         }
         else
         {
           this.renderer.setStyle(this.noRecipesDivRef.nativeElement, 'display', 'block');
         }
-        }
+      }
         
         );
     }
-    }
-    
   }
+
+  public sortByPrepTime() {
+    this.recipes.sort((recipe1, recipe2) => {
+      let recipe1PrepTime = recipe1.PreparingTime;
+      let recipe2PrepTime = recipe2.PreparingTime;
+  
+      if (recipe1PrepTime < recipe2PrepTime) {
+          return -1;
+      }
+      if (recipe1PrepTime > recipe2PrepTime) {
+          return 1;
+      }
+      return 0;
+    });
+  }
+
+  public sortByCaloriesNo() {
+    this.recipes.sort((recipe1, recipe2) => {
+      let recipe1CaloriesNo = recipe1.CaloriesNo;
+      let recipe2CaloriesNo = recipe2.CaloriesNo;
+  
+      if (recipe1CaloriesNo < recipe2CaloriesNo) {
+          return -1;
+      }
+      if (recipe1CaloriesNo > recipe2CaloriesNo) {
+          return 1;
+      }
+      return 0;
+    });
+  }
+    
+}
    
 
