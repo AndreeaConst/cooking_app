@@ -14,10 +14,10 @@
                 <mat-grid-list cols="1" rowHeight="100px">
                     <mat-grid-tile *ngFor="let recipe of recipes" style="border: 3px solid black; border-color: orange">
                         <div>
-                            <a href="#">{{recipe.Image}}</a>
+                            <a type="button" (click)="routingToRecipeDetails(recipe)">{{recipe.Image}}</a>
                         </div>
                         <div style="display: flex; flex-direction: column;">
-                            <a href="#">{{recipe.Name}}</a>
+                            <a type="button" (click)="routingToRecipeDetails(recipe)">{{recipe.Name}}</a>
                             <span>calories: {{recipe.CaloriesNo}}</span>
                             <span>prep time: {{recipe.PreparingTime}}</span>
                             <span>{{recipe.Servings}}</span> 

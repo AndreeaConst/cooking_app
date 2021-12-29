@@ -12,19 +12,19 @@
 
           <div class="cont_mins">
             <div class="sub_mins">
-              <h3>50</h3>
+              <h3>{{selectedRecipe.PreparingTime}}</h3>
               <span>MINS</span>
             </div>
             <div class="cont_icon_right"></div>
           </div>
 
           <div class="cont_servings">
-            <h3>4</h3>
+            <h3>{{selectedRecipe.Servings}}</h3>
             <span>SERVINGS</span>
           </div>
 
           <div class="cont_detalles">
-            <h3 style="margin-top:50px">Pizza</h3>
+            <h3 style="margin-top:50px">{{selectedRecipe.Name}}</h3>
           </div>
 
         </div>
@@ -65,10 +65,7 @@
             </div>
 
             <div #prepDiv class="cont_text_det_preparation scroll">
-                Heat oven to 375 degress
-                Heat oil in a large skillet over medium-low head. Add onion and bell papper. 
-                Cook gently until very soft, about 20 minutes. Add garlic and cook until tender, 1 to 2 minutes; 
-                stir in cumin, paprika and cook 1 minute. Pour in tomatoes and season with 3/4 teaspoon salt and 1/4 teaspoon pepper;
+                {{selectedRecipe.Description}}
             </div>  
         
           </div>

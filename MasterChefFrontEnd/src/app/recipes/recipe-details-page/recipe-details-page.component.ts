@@ -1,4 +1,6 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Recipe } from 'src/app/interfaces/recipe';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'app-recipe-details-page',
@@ -9,8 +11,11 @@ export class RecipeDetailsPageComponent implements OnInit {
     c = 1;
     @ViewChild('ingredDiv', { static: false })ingredDivRef!: ElementRef;
     @ViewChild('prepDiv', { static: false })prepDivRef!: ElementRef;
+    selectedRecipe!: Recipe;
 
-    constructor(private renderer: Renderer2) { }
+    constructor(private renderer: Renderer2, private recipeService: RecipeService,) { 
+      this.selectedRecipe = recipeService.selectedRecipe;
+    }
 
     ngOnInit(): void {
     }

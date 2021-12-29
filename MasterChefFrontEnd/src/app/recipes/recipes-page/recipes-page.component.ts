@@ -1,5 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, ElementRef, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Recipe } from 'src/app/interfaces/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
@@ -13,13 +12,8 @@ import { RecipeService } from 'src/app/services/recipe.service';
 
 export class RecipesPageComponent implements OnInit {
 
-  recipeName='';
   responseRecipe!:Recipe;
   recipes:Recipe[]=[];
-  inputRecipe!:Recipe;  
-
-  hide = true;
-  recipeForm: FormGroup = new FormGroup({});
   @ViewChild('noRecipesDiv', { static: false })noRecipesDivRef!: ElementRef;
 
   constructor(
@@ -63,16 +57,16 @@ export class RecipesPageComponent implements OnInit {
   }
 
   async searchByName(event:any) {
-    this.recipes=[];
-     this.inputRecipe=new Recipe(event.target.value);   
-     console.log(event.target.value);
+     this.recipes=[];
+     const inputRecipe = new Recipe(event.target.value);   
+
      if(event.target.value=="")
      {
        this.getAllRecipes();
      } 
      else    
      { 
-      this.recipeService.searchRecipeByName(this.inputRecipe).subscribe(
+      this.recipeService.searchRecipeByName(inputRecipe).subscribe(
       (response) => {
         if(response.length>0)
         {
@@ -117,6 +111,11 @@ export class RecipesPageComponent implements OnInit {
       }
       return 0;
     });
+  }
+
+  routingToRecipeDetails(recipe: Recipe){
+    this.recipeService.selectedRecipe = recipe;
+    this.router.navigate(['recipes/recipe'])
   }
     
 }
