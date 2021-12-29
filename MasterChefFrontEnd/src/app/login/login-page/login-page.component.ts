@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'ngx-webstorage';
 import { ObjectUnsubscribedError } from 'rxjs';
 import { User } from 'src/app/interfaces/user';
 import { LoginService } from 'src/app/services/login.service';
@@ -60,8 +61,7 @@ export class LoginPageComponent implements OnInit {
      (response) => {
        if(response.FirstName!=null)
        {
-      this.loginService.user=response;
-       this.loginService.login();
+       this.loginService.login(response);
        this.router.navigate(['/my-profile']);
        }
        else

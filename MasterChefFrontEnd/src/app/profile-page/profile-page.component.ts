@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from 'ngx-webstorage';
 import { User } from '../interfaces/user';
 import { LoginService } from '../services/login.service';
 
@@ -9,7 +10,7 @@ import { LoginService } from '../services/login.service';
 })
 export class ProfilePageComponent implements OnInit {
    user!:User;
-  constructor(private loginService:LoginService) {this.user=loginService.user; }
+   constructor(private localStorage:LocalStorageService) { this.user = this.localStorage.retrieve('user'); }
 
   ngOnInit(): void {
   }

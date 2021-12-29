@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'ngx-webstorage';
 import { Recipe } from 'src/app/interfaces/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
 
@@ -19,7 +20,8 @@ export class RecipesPageComponent implements OnInit {
   constructor(
     private recipeService: RecipeService,
     private router: Router,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private localStorage:LocalStorageService
   ) { }
 
   ngOnInit(): void {
@@ -114,7 +116,7 @@ export class RecipesPageComponent implements OnInit {
   }
 
   routingToRecipeDetails(recipe: Recipe){
-    this.recipeService.selectedRecipe = recipe;
+    this.localStorage.store('recipe', recipe);
     this.router.navigate(['recipes/recipe'])
   }
     

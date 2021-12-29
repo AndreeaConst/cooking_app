@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { LocalStorageService } from 'ngx-webstorage';
 import { Recipe } from 'src/app/interfaces/recipe';
 import { RecipeService } from 'src/app/services/recipe.service';
 
@@ -13,8 +14,10 @@ export class RecipeDetailsPageComponent implements OnInit {
     @ViewChild('prepDiv', { static: false })prepDivRef!: ElementRef;
     selectedRecipe!: Recipe;
 
-    constructor(private renderer: Renderer2, private recipeService: RecipeService,) { 
-      this.selectedRecipe = recipeService.selectedRecipe;
+    constructor(
+      private renderer: Renderer2, 
+      private localStorage:LocalStorageService) { 
+      this.selectedRecipe = localStorage.retrieve('recipe');
     }
 
     ngOnInit(): void {

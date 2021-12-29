@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'ngx-webstorage';
 import { User } from 'src/app/interfaces/user';
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
@@ -75,8 +76,7 @@ export class RegisterPageComponent implements OnInit {
   async onRegister(rForm: { value: User; reset: () => void; }) {
     this.userService.addUser(rForm.value).subscribe(
       (response: User) => {
-        this.loginService.user=response;
-        this.loginService.login();
+        this.loginService.login(response);
         this.router.navigate(['/my-profile']);
       },
       (error: HttpErrorResponse) => {
