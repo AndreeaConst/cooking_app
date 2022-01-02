@@ -18,6 +18,7 @@
                         </div>
                         <div style="display: flex; flex-direction: column;">
                             <a type="button" (click)="routingToRecipeDetails(recipe)">{{recipe.Name}}</a>
+                            <img [src]="recipe.Image" width=70px, height=70px>
                             <span>calories: {{recipe.CaloriesNo}}</span>
                             <span>prep time: {{recipe.PreparingTime}}</span>
                             <span>{{recipe.Servings}}</span> 

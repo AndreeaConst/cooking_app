@@ -121,6 +121,7 @@ namespace MasterChef_backend.Controllers
                                             result.Image = (string)reader["Image"];
                                             result.PreparingTime = (int)reader["PreparingTime"];
                                             result.Servings = (int)reader["Servings"];
+                                            result.Image = (string)reader["Image"];
                                             int index = results.FindIndex(r => r.Description.Equals(result.Description));
                                             if (index == -1)
                                             {
