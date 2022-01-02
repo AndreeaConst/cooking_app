@@ -9,7 +9,7 @@ namespace MasterChef_backend.Models
     {
         public int IngredientId { get; set; }
 
-        public string Name { get; set; }
+        public string IngredientName { get; set; }
 
     }
 }

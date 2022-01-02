@@ -28,8 +28,11 @@ namespace MasterChef_backend.Controllers
         {
             List<Recipe> results = new List<Recipe>();
             string query = @"select * from [MasterChef].[dbo].[Recipe]";
+            string query2 = @"select [MasterChef].[dbo].[Ingredient].Name from [MasterChef].[dbo].[Ingredient] JOIN [MasterChef].[dbo].[Recipe_ingredient] 
+                ON [MasterChef].[dbo].[Ingredient].IngredientId = [MasterChef].[dbo].[Recipe_ingredient].IngredientId
+                WHERE [MasterChef].[dbo].[Recipe_ingredient].RecipeId =@recipeId";
             string sqlDataSource = _configuration.GetConnectionString("MasterchefAppCon");
-            SqlDataReader reader;
+            SqlDataReader reader, reader2;
             using (SqlConnection connection = new SqlConnection(sqlDataSource))
             {
                 connection.Open();
@@ -39,19 +42,41 @@ namespace MasterChef_backend.Controllers
                     while (reader.Read())
                     {
                         Recipe result = new Recipe();
+                        result.RecipeId = (int)reader["RecipeId"];
                         result.Name = (string)reader["Name"];
                         result.Description = (string)reader["Description"];
                         result.CaloriesNo = (int)reader["CaloriesNo"];
                         result.Image = (string)reader["Image"];
                         result.PreparingTime = (int)reader["PreparingTime"];
                         result.Servings = (int)reader["Servings"];
-                        results.Add(result);
-
-
+                        using (SqlConnection connection2 = new SqlConnection(sqlDataSource))
+                        {
+                            connection2.Open();
+                            string listOfIngredients = "";
+                            using (SqlCommand myCommand2 = new SqlCommand(query2, connection2))
+                            {
+                                myCommand2.Parameters.AddWithValue("@RecipeId", result.RecipeId);
+                                reader2 = myCommand2.ExecuteReader();
+                                while (reader2.Read())
+                                {
+                                    string ingredient= (string)reader2["Name"];
+                                    if (listOfIngredients.Equals(""))
+                                    {
+                                        listOfIngredients = ingredient;
+                                    }
+                                    else
+                                    {
+                                        listOfIngredients = listOfIngredients + "," + ingredient;
+                                    }
+                                }
+                            }
+                            reader2.Close();
+                            connection2.Close();
+                            result.ListOfIngredients = listOfIngredients;
+                            results.Add(result);
+                        }
                     }
-
                     reader.Close();
-
                     connection.Close();
                 }
             }

@@ -6,6 +6,7 @@ export class Recipe {
   Image!: string;
   PreparingTime!: number;
   Servings!: number;
+  Ingredients!: string;
   constructor(Name:string){
       this.Name=Name;
   }
