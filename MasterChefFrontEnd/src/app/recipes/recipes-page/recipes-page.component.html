@@ -1,6 +1,6 @@
-<div class="page-container">
+<div class="page-container" style="background: #d4cebf">
     <div class="content-wrap">
-        <div class="mt-3" style="text-align:center">
+        <div  style="text-align:center">
                 <div class="col-12 search" style="display: flex; flex-direction: row; align-items: center;">
                     <button routerLink="../my-profile" mat-raised-button color="warn" style="margin-right: 100px; width: 200px;">Back to my profile</button>
                     <input style="width: 55%" type="text" name="recipeName"  (keyup.enter)="searchByName($event)" class="form-control search-fontsize" placeholder="Type here a recipe you want..." />
@@ -11,17 +11,16 @@
                 </div>
 
             <div class="mt-3 mb-5" style="margin-left: 310px; margin-right: 380px;">
-                <mat-grid-list cols="1" rowHeight="100px">
-                    <mat-grid-tile *ngFor="let recipe of recipes" style="border: 3px solid black; border-color: orange">
+                <mat-grid-list cols="1" rowHeight="200px">
+                    <mat-grid-tile *ngFor="let recipe of recipes" style="background: blanchedalmond;border: 3px solid black; border-color: orange; border-radius: 10px;">
                         <div>
-                            <a type="button" (click)="routingToRecipeDetails(recipe)">{{recipe.Image}}</a>
+                            <a type="button" (click)="routingToRecipeDetails(recipe)"><img [src]="recipe.Image" width=300px, height=200px></a>
                         </div>
-                        <div style="display: flex; flex-direction: column;">
-                            <a type="button" (click)="routingToRecipeDetails(recipe)">{{recipe.Name}}</a>
-                            <img [src]="recipe.Image" width=70px, height=70px>
-                            <span>calories: {{recipe.CaloriesNo}}</span>
-                            <span>prep time: {{recipe.PreparingTime}}</span>
-                            <span>{{recipe.Servings}}</span> 
+                        <div class="recipe-details ml-5">
+                            <a type="button" (click)="routingToRecipeDetails(recipe)" style="font-size: 40px; font-weight: 600;">{{recipe.Name.toUpperCase()}}</a>
+                            <span style="font-size: 25px"><mat-icon>fitness_center</mat-icon>Calories: {{recipe.CaloriesNo}}</span>
+                            <span style="font-size: 25px"><mat-icon>access_alarms</mat-icon>Preparing time: {{recipe.PreparingTime}}</span>
+                            <span style="font-size: 25px"><mat-icon> local_dining</mat-icon>Servings: {{recipe.Servings}}</span> 
                         </div>
                     </mat-grid-tile>
                 </mat-grid-list>

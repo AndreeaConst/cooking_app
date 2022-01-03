@@ -8,10 +8,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HttpClientModule } from '@angular/common/http';
 import {NgxWebstorageModule} from 'ngx-webstorage';
+import { MatIconModule } from '@angular/material/icon';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,
@@ -19,6 +22,7 @@ import {NgxWebstorageModule} from 'ngx-webstorage';
     BrowserAnimationsModule,
     NgbModule,
     HttpClientModule,
+    MatIconModule,
     NgxWebstorageModule.forRoot(),
   ],
   providers: [],
