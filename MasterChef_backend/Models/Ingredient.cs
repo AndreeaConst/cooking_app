@@ -11,5 +11,7 @@ namespace MasterChef_backend.Models
 
         public string IngredientName { get; set; }
 
+        public int Amount { get; set; }
+
     }
 }

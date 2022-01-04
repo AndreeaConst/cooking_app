@@ -14,7 +14,7 @@ namespace MasterChef_backend.Models
         public string Image { get; set; }
         public int PreparingTime { get; set; }
         public int Servings { get; set; }
-        public string ListOfIngredients { get; set; }
+        public List<Ingredient> ListOfIngredients { get; set; }
 
        
     }

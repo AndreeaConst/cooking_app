@@ -41,26 +41,12 @@
             </div>
             
             <div #ingredDiv class="ingredDiv">
-              <div>
-                <hr width="30px" color="orange">
-                <p>Tomatoes</p>
-                <hr width="30px" color="orange">
-              </div>
-              
-              <div>
-                <hr width="30px" color="orange">
-                <p>Cheese</p>
-                <hr width="30px" color="orange">
-              </div>
-              <div>
-                <hr width="30px" color="orange">
-                <p>Flour</p>
-                <hr width="30px" color="orange">
-              </div>
-              <div>
-                <hr width="30px" color="orange">
-                <p>Olives</p>
-                <hr width="30px" color="orange">
+              <div *ngFor="let ingredient of selectedRecipe.ListOfIngredients">
+                <span style="margin-bottom:15px">
+                  <hr width="30px" color="orange">
+                  {{ingredient.IngredientName}} {{ingredient.Amount}}g
+                  <hr width="30px" color="orange">
+              </span>
               </div>
             </div>
 

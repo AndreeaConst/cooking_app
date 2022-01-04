@@ -1,3 +1,5 @@
+import { Ingredient } from "./ingredient";
+
 export class Recipe {
   RecipeId!: number;
   Name: string;
@@ -6,7 +8,7 @@ export class Recipe {
   Image!: string;
   PreparingTime!: number;
   Servings!: number;
-  Ingredients!: string;
+  ListOfIngredients!: Ingredient[];
   constructor(Name:string){
       this.Name=Name;
   }

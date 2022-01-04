@@ -21,6 +21,7 @@ export class RecipeDetailsPageComponent implements OnInit {
     }
 
     ngOnInit(): void {
+      console.log(this.selectedRecipe.ListOfIngredients)
     }
    
     open_close(){
