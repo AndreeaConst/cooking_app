@@ -2,8 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LocalStorageService } from 'ngx-webstorage';
-import { ObjectUnsubscribedError } from 'rxjs';
 import { User } from 'src/app/interfaces/user';
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
@@ -52,7 +50,13 @@ export class LoginPageComponent implements OnInit {
   }
 
   onClickRememberMe() {
-
+    if (this.checked == false) //first time user clicked the button (checked)
+    {
+      this.loginService.rememberMe(this.emailLogin?.value, this.passwordLogin?.value);
+    }
+    else {
+      this.loginService.cookieService.deleteAll();
+    }
   }
 
   async onLogin(lForm: { value: User; reset: () => void; }) {
@@ -83,7 +87,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   getErrorMessageRequiredEmailLogin() {
-    return this.loginForm.get("emailLogin")?.hasError('required') ? 'Please enter your email' : true;
+    return this.emailLogin?.hasError('required') ? 'Please enter your email' : true;
   }
 
   getErrorMessageRequiredPasswordLogin() {
