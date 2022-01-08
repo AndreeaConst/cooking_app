@@ -26,6 +26,10 @@ export class LoginPageComponent implements OnInit {
     private router: Router,
     private loginService:LoginService
   ) {
+    if (this.loginService.cookieService.check("cookieEmail"))
+      this.checked = true;
+    this.email = loginService.cookieService.get('cookieEmail');
+    this.password = loginService.cookieService.get('cookiePassword');
   }
 
   ngOnInit(): void {

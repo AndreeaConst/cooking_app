@@ -29,7 +29,7 @@ namespace MasterChef_backend.Controllers
         {
             List<Recipe> results = new List<Recipe>();
             string query = @"select * from [MasterChef].[dbo].[Recipe]";
-            string query2 = @"select [MasterChef].[dbo].[Ingredient].Name from [MasterChef].[dbo].[Ingredient] JOIN [MasterChef].[dbo].[Recipe_ingredient] 
+            string query2 = @"select [MasterChef].[dbo].[Ingredient].Name, [MasterChef].[dbo].[Ingredient].IngredientId, [MasterChef].[dbo].[Recipe_ingredient].Amount from [MasterChef].[dbo].[Ingredient] JOIN [MasterChef].[dbo].[Recipe_ingredient] 
                 ON [MasterChef].[dbo].[Ingredient].IngredientId = [MasterChef].[dbo].[Recipe_ingredient].IngredientId
                 WHERE [MasterChef].[dbo].[Recipe_ingredient].RecipeId =@recipeId";
             string sqlDataSource = _configuration.GetConnectionString("MasterchefAppCon");

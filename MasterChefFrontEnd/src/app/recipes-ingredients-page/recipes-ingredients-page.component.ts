@@ -26,7 +26,18 @@ export class RecipesIngredientsPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAllRecipes();
+    console.log("local storage:" + this.localStorage.retrieve('ingredientNames'));
+    if(!this.localStorage.retrieve('ingredientNames'))
+    {
+      this.getAllRecipes();
+    }
+    else
+    {
+      this.recipes=this.localStorage.retrieve('recipes');
+      console.log(this.recipes);
+      this.ingredientNames=this.localStorage.retrieve('ingredientNames');
+    }
+    
     // this.recipes=[
     //   {RecipeId: 1, Name: 'Cookie', CaloriesNo: 100, Description: 'bla bla', Image: 'bla bla', PreparingTime: 60, Servings: 1, ListOfIngredients: []},
     //   {RecipeId: 2, Name: 'Macaroni', CaloriesNo: 500, Description: 'bla bla', Image: 'bla bla', PreparingTime: 30, Servings: 1, ListOfIngredients: []},
@@ -99,12 +110,15 @@ export class RecipesIngredientsPageComponent implements OnInit {
   }
 
   async onFindRecipe(){
-
+    this.recipeService.searchRecipeByIngredients(this.ingredientNames).subscribe(
+      (recipes=>{this.recipes=recipes})
+    )
   }
 
   routingToRecipeDetails(recipe: Recipe){
-    this.localStorage.store('recipeIngredient', recipe);
-    this.router.navigate(['recipes-by-ingredients/recipe'])
+    this.localStorage.store('ingredientNames',this.ingredientNames);
+    this.localStorage.store('recipes',this.recipes);
+    this.router.navigate(['../recipes/recipe'])
   }
 
 }

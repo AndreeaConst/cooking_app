@@ -3,6 +3,7 @@ import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Recipe } from '../interfaces/recipe';
+import { Ingredient } from '../interfaces/ingredient';
 
 @Injectable({providedIn: 'root'})
 export class RecipeService {
@@ -15,7 +16,10 @@ export class RecipeService {
   }
 
   public searchRecipeByName(inputRecipe: Recipe):Observable<Recipe[]> {
-    console.log(inputRecipe.Name);
      return this.http.post<Recipe[]>(`${this.apiServerUrl}/recipeController`, inputRecipe);
    }
+
+   public searchRecipeByIngredients(ingredients:string[]):Observable<Recipe[]> {
+    return this.http.post<Recipe[]>(`${this.apiServerUrl}/ingredientsController`, ingredients);
+  }
 }
