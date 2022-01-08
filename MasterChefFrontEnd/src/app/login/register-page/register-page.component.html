@@ -1,6 +1,6 @@
 <div class="page-container" style="background: #d4cebf">
     <div class="content-wrap">
-    <mat-card class="register-card mt-4 mb-4">
+    <mat-card class="register-card mt-4 mb-5">
         <mat-card-header>
             <mat-card-title>Register</mat-card-title>
         </mat-card-header>
@@ -8,12 +8,6 @@
         <mat-card-content>
 
             <form [formGroup]="registerForm" #rForm="ngForm" class="example-form">
-
-                <mat-form-field class="full-width">
-                    <input id="usernameRegister" type="text" formControlName="Username" matInput placeholder="Username"
-                        required>
-                    <mat-error *ngIf="usernameRegister">{{getErrorMessageRequiredUsernameRegister()}}</mat-error>
-                </mat-form-field>
 
                 <mat-form-field class="full-width">
                     <input id="emailRegister" type="text" formControlName="Email" matInput placeholder="Email"

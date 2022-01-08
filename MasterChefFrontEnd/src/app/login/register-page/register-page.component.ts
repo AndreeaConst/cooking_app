@@ -27,9 +27,6 @@ export class RegisterPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      Username: ['', Validators.compose(
-        [Validators.required]
-      )],
 
       Email: ['', Validators.compose(
         [Validators.required]
@@ -98,10 +95,6 @@ export class RegisterPageComponent implements OnInit {
     return this.registerForm.get("Email");
   }
 
-  get usernameRegister() {
-    return this.registerForm.get("Username");
-  }
-
   get passwordRegister() {
     return this.registerForm.get("Password");
   }
@@ -123,19 +116,19 @@ export class RegisterPageComponent implements OnInit {
   }
 
   getErrorMessageRequiredFirstName() {
-    return this.firstName?.hasError('required') ? 'You must enter a value' : true;
+    return this.firstName?.hasError('required') ? 'You must enter your first name' : true;
   }
 
   getErrorMessageRequiredLastName() {
-    return this.lastName?.hasError('required') ? 'You must enter a value' : true;
+    return this.lastName?.hasError('required') ? 'You must enter your last name' : true;
   }
 
   getErrorMessageRequiredEmailRegister() {
-    return this.registerForm.get("emailRegister")?.hasError('required') ? 'You must enter a value' : true;
+    return this.emailRegister?.hasError('required') ? 'You must enter an email' : true;
   }
 
   getErrorMessageRequiredPasswordRegister() {
-    return this.passwordRegister?.hasError('required') ? 'You must enter a value' : true;
+    return this.passwordRegister?.hasError('required') ? 'You must enter a password' : true;
   }
 
   getErrorMessageLengthPasswordRegister() {
@@ -143,12 +136,9 @@ export class RegisterPageComponent implements OnInit {
   }
 
   getErrorMessageRequiredPasswordRegisterConfirm() {
-    return this.passwordRegisterConfirm?.hasError('required') ? 'You must enter a value' : true;
+    return this.passwordRegisterConfirm?.hasError('required') ? 'You must enter your password' : true;
   }
 
-  getErrorMessageRequiredUsernameRegister() {
-    return this.usernameRegister?.hasError('required') ? 'You must enter a value' : true;
-  }
 
   getErrorPasswordsEqual(){
     //return this.passwordRegisterConfirm?.errors?.areEqual(this.passwordRegister?.value) ? 'Your passwords are not the same' : true;

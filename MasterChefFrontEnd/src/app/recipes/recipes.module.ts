@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RecipesRoutingModule } from './recipes-routing.module';
 import { RecipesPageComponent } from './recipes-page/recipes-page.component';
 import { MatIconModule } from '@angular/material/icon';
-import {MatGridListModule} from '@angular/material/grid-list';
 import { RecipeDetailsPageComponent } from './recipe-details-page/recipe-details-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -19,8 +19,8 @@ import {MatRadioModule} from '@angular/material/radio';
     CommonModule,
     RecipesRoutingModule,
     MatIconModule,
-    MatGridListModule,
     FormsModule, ReactiveFormsModule,
+    MatGridListModule,
     MatButtonModule,
     MatRadioModule
   ]

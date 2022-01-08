@@ -1,0 +1,71 @@
+<div class="page-container" style="background: #d4cebf">
+    <div class="content-wrap">
+        <div class="row">
+            <div style="display: flex; flex-direction: column;" class="mt-3 ml-5 col-lg-3">
+                <button routerLink="../my-profile" mat-raised-button color="warn" style="margin-right: 100px; width: 200px;">Back to my profile</button>
+                <div *ngIf="ingredientNames.length >= 1" class="mt-5" style="display: flex; flex-direction: column;align-items: flex-start;">
+                    <span style="font-size: 20px; font-weight: bold;">Ingredients introduced</span>
+                    <div *ngFor="let ingredientName of ingredientNames" style="display: flex;" class="mt-2">
+                        <input matInput class="form-control" placeholder="{{ingredientName}}" readonly> 
+                        <button class="btn btn-danger" (click)="onDeleteIngredient(ingredientName)">Delete</button>
+                    </div>
+                </div>
+            </div>
+            <div  style="text-align:center" class="mt-3 col-lg-6">
+                    <div class="col-12 search" style="display: flex; flex-direction: row; align-items: center;">
+                        <input [(ngModel)]="recipeName" style="width: 70%" type="text" name="recipeName"  class="form-control search-fontsize" placeholder="Type here an ingredient you have..." />
+                        <button (click)="onAddIngredient()" mat-raised-button color="primary">Add ingredient</button>&nbsp;
+                        <button (click)="onFindRecipe()" mat-raised-button color="accent" [disabled]="ingredientNames.length < 1">Find recipes</button>
+                    
+                    </div>
+                    <div class="col-12 mt-3">
+                        <mat-radio-button (click)="sortByPrepTime()">Preparing Time</mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-radio-button (click)="sortByCaloriesNo()">Calories Number</mat-radio-button>
+                    </div>
+                    
+                    <div class="mt-3 mb-5">
+    
+                        <mat-grid-list cols="1" rowHeight="200px">
+                            <mat-grid-tile *ngFor="let recipe of recipes" style="background: blanchedalmond;border: 3px solid black; border-color: orange; border-radius: 10px;">
+                                <div>
+                                    <a type="button" (click)="routingToRecipeDetails(recipe)"><img [src]="recipe.Image" width=300px, height=200px></a>
+                                </div>
+                                <div class="recipe-details ml-5">
+                                    <a type="button" (click)="routingToRecipeDetails(recipe)" style="font-size: 40px; font-weight: 600;">{{recipe.Name.toUpperCase()}}</a>
+                                    <span style="font-size: 25px"><mat-icon>fitness_center</mat-icon>Calories: {{recipe.CaloriesNo}}</span>
+                                    <span style="font-size: 25px"><mat-icon>access_alarms</mat-icon>Preparing time: {{recipe.PreparingTime}} min</span>
+                                    <span style="font-size: 25px"><mat-icon> local_dining</mat-icon>Servings: {{recipe.Servings}}</span> 
+                                </div>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+    
+                        <div #noRecipesDiv class="noRecipesDiv">No recipes found!</div>
+                        
+                    </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+<div class="footer">
+    <div class="col-4 footer-divs">
+        Studenti:
+        <br>
+        Cibotaru Bianca, grupa 10LF291
+        <br>
+        Constantinescu Andreea, grupa 10LF291
+        <br>
+        Gramada Catalina, grupa 10LF292
+    </div>
+    <div class="col-4 footer-divs">
+        <img src="../assets/images/Masterchef logo.png" width="300px" height="200px">
+    </div>
+    <div class="col-4 footer-divs">
+        Inginerie Software Masterchef@2021
+    </div>
+        
+</div>
+
+</div>

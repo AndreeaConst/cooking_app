@@ -10,11 +10,17 @@ import { HttpClientModule } from '@angular/common/http';
 import {NgxWebstorageModule} from 'ngx-webstorage';
 import { MatIconModule } from '@angular/material/icon';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { RecipesIngredientsPageComponent } from './recipes-ingredients-page/recipes-ingredients-page.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    RecipesIngredientsPageComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +29,10 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
     NgbModule,
     HttpClientModule,
     MatIconModule,
+    MatGridListModule,
+    MatRadioModule,
+    MatButtonModule,
+    FormsModule,
     NgxWebstorageModule.forRoot(),
   ],
   providers: [],
