@@ -23,29 +23,6 @@ namespace MasterChef_backend.Controllers
             _configuration = configuration;
         }
 
-        [HttpGet]
-        public JsonResult Get()
-        {
-            DataTable table = new DataTable();
-            string query = @"select * from [MasterChef].[dbo].[User]";
-            string sqlDataSource = _configuration.GetConnectionString("MasterchefAppCon");
-            SqlDataReader reader;
-            using (SqlConnection connection = new SqlConnection(sqlDataSource))
-            {
-                connection.Open();
-                using (SqlCommand myCommand = new SqlCommand(query, connection))
-                {
-                    reader = myCommand.ExecuteReader();
-                    table.Load(reader);
-                    reader.Close();
-                    connection.Close();
-                }
-            }
-
-            return new JsonResult(table);
-
-        }
-
         [HttpPost]
         public JsonResult AddUser(User newUser)
         {

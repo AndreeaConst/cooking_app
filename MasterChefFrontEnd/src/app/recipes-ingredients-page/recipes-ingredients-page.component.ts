@@ -26,7 +26,6 @@ export class RecipesIngredientsPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log("local storage:" + this.localStorage.retrieve('ingredientNames'));
     if(!this.localStorage.retrieve('ingredientNames'))
     {
       this.getAllRecipes();
@@ -34,7 +33,6 @@ export class RecipesIngredientsPageComponent implements OnInit {
     else
     {
       this.recipes=this.localStorage.retrieve('recipes');
-      console.log(this.recipes);
       this.ingredientNames=this.localStorage.retrieve('ingredientNames');
     }
     
@@ -117,7 +115,8 @@ export class RecipesIngredientsPageComponent implements OnInit {
 
   routingToRecipeDetails(recipe: Recipe){
     this.localStorage.store('ingredientNames',this.ingredientNames);
-    this.localStorage.store('recipes',this.recipes);
+    this.localStorage.store('recipes', this.recipes);
+    this.localStorage.store('recipe',recipe);
     this.router.navigate(['../recipes/recipe'])
   }
 
