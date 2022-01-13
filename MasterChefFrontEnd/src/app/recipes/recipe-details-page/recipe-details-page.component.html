@@ -40,11 +40,11 @@
               </ul>  
             </div>
             
-            <div #ingredDiv class="ingredDiv">
+            <div #ingredDiv class="ingredDiv scroll">
               <div *ngFor="let ingredient of selectedRecipe.ListOfIngredients">
                 <span style="margin-bottom:15px">
                   <hr width="30px" color="orange">
-                  {{ingredient.IngredientName}} {{ingredient.Amount}}g
+                  {{ingredient.IngredientName}} {{ingredient.Amount}}(g)
                   <hr width="30px" color="orange">
               </span>
               </div>

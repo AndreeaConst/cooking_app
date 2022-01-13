@@ -73,6 +73,7 @@ export class RegisterPageComponent implements OnInit {
   async onRegister(rForm: { value: User; reset: () => void; }) {
     this.userService.addUser(rForm.value).subscribe(
       (response: User) => {
+        console.log(response);
         this.loginService.login(response);
         this.router.navigate(['/my-profile']);
       },

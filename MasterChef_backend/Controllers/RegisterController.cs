@@ -24,11 +24,11 @@ namespace MasterChef_backend.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddUser(User newUser)
+        public User AddUser(User newUser)
         {
             DataTable table = new DataTable();
-            string query = @"insert into [MasterChef].[dbo].[User] (FirstName, LastName, Username, Password, Height, Weight, Age, Email) 
-                             values (@FirstName, @LastName, @Username, @Password, @Height, @Weight, @Age, @Email)";
+            string query = @"insert into [MasterChef].[dbo].[User] (FirstName, LastName, Password, Height, Weight, Age, Email) 
+                             values (@FirstName, @LastName, @Password, @Height, @Weight, @Age, @Email)";
             string sqlDataSource = _configuration.GetConnectionString("MasterchefAppCon");
             SqlDataReader reader;
             using (SqlConnection connection = new SqlConnection(sqlDataSource))
@@ -38,21 +38,20 @@ namespace MasterChef_backend.Controllers
                 {
                     myCommand.Parameters.AddWithValue("@FirstName", newUser.FirstName);
                     myCommand.Parameters.AddWithValue("@LastName", newUser.LastName);
-                    myCommand.Parameters.AddWithValue("@Username", newUser.Username);
                     myCommand.Parameters.AddWithValue("@Password", newUser.Password);
                     myCommand.Parameters.AddWithValue("@Height", newUser.Height);
                     myCommand.Parameters.AddWithValue("@Weight", newUser.Weight);
                     myCommand.Parameters.AddWithValue("@Age", newUser.Age);
                     myCommand.Parameters.AddWithValue("@Email", newUser.Email);
                     reader = myCommand.ExecuteReader();
-                    table.Load(reader);
                     reader.Close();
                     connection.Close();
                 }
+
+
+                return newUser;
+
             }
-
-            return new JsonResult(table);
-
         }
     }
 }

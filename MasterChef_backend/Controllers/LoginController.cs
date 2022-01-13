@@ -43,14 +43,13 @@ namespace MasterChef_backend.Controllers
                     {
                         result.FirstName = (string)reader["FirstName"];
                         result.LastName = (string)reader["LastName"];
-                        result.Username = (string)reader["Username"];
                         result.Password = (string)reader["Password"];
                         result.Height = (float)reader["Height"];
                         result.Weight = (float)reader["Weight"];
                         result.Age = (int)reader["Age"];
                         result.Email = (string)reader["Email"];
 
-    }
+                     }
                     reader.Close();
                     connection.Close();
                 }

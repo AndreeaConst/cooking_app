@@ -36,18 +36,6 @@ export class RecipesIngredientsPageComponent implements OnInit {
       this.ingredientNames=this.localStorage.retrieve('ingredientNames');
     }
     
-    // this.recipes=[
-    //   {RecipeId: 1, Name: 'Cookie', CaloriesNo: 100, Description: 'bla bla', Image: 'bla bla', PreparingTime: 60, Servings: 1, ListOfIngredients: []},
-    //   {RecipeId: 2, Name: 'Macaroni', CaloriesNo: 500, Description: 'bla bla', Image: 'bla bla', PreparingTime: 30, Servings: 1, ListOfIngredients: []},
-    //   {RecipeId: 3, Name: 'Spaghetti', CaloriesNo: 450, Description: 'bla bla', Image: 'bla bla', PreparingTime: 25, Servings: 1, ListOfIngredients: []},
-    //   {RecipeId: 4, Name: 'Pancakes', CaloriesNo: 325, Description: 'bla bla', Image: 'bla bla', PreparingTime: 30, Servings: 1, ListOfIngredients: []},
-    //   {RecipeId: 5, Name: 'Pizza', CaloriesNo: 450, Description: 'bla bla', Image: 'bla bla', PreparingTime: 125, Servings: 1, ListOfIngredients: []},
-    //   {RecipeId: 6, Name: 'Hamburger', CaloriesNo: 268, Description: 'bla bla', Image: 'bla bla', PreparingTime: 15, Servings: 1, ListOfIngredients: []},
-    //   {RecipeId: 7, Name: 'Vegetarian Pizza', CaloriesNo: 450, Description: 'bla bla', Image: 'bla bla', PreparingTime: 125, Servings: 1, ListOfIngredients: []},
-    //   {RecipeId: 8, Name: 'Potatoes with cheese', CaloriesNo: 380, Description: 'bla bla', Image: 'bla bla', PreparingTime: 40, Servings: 1, ListOfIngredients: []},
-    //   {RecipeId: 9, Name: 'Fruit salad with sea fruit', CaloriesNo: 100, Description: 'bla bla', Image: 'bla bla', PreparingTime: 60, Servings: 1, ListOfIngredients: []},
-    //   {RecipeId: 10, Name: 'Tomato soup', CaloriesNo: 260, Description: 'bla bla', Image: 'bla bla', PreparingTime: 60, Servings: 1, ListOfIngredients: []},
-    // ];
   }
 
   async getAllRecipes(){
@@ -108,6 +96,7 @@ export class RecipesIngredientsPageComponent implements OnInit {
   }
 
   async onFindRecipe(){
+    console.log(this.ingredientNames);
     this.recipeService.searchRecipeByIngredients(this.ingredientNames).subscribe(
       (recipes=>{this.recipes=recipes})
     )
